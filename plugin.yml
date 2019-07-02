@@ -1,0 +1,85 @@
+main: ${project.groupId}.${project.name}
+name: ${project.name}
+version: ${project.version}
+website: ${project.url}
+description: ${project.description}
+authors: [RustyTrumbone]
+depend: [MassiveCore]
+
+permissions:
+# -------------------------------------------- #
+# THE REAL NODES
+# -------------------------------------------- #
+  blessedwar.basecommand:   {description: use the Blessed War base command, default: false}
+  blessedwar.award:         {description: award an alignment crate key, default: false}
+  blessedwar.claim:         {description: claim your reward from a successful alignment win, default: false}
+  blessedwar.end:           {description: end the Blessed War, default: false}
+  blessedwar.factionjoin:  {description: align your faction with a religion for the Blessed War, default: false}
+  blessedwar.factionleave: {description: leave the alignment your faction is associated with, default: false}
+  blessedwar.modifystat:    {description: modify an alignment's stat, default: false}
+  blessedwar.playerjoin:   {description: align yourself with a religion for the Blessed War, default: false}
+  blessedwar.playerleave:  {description: leave the alignment you are associated with, default: false}
+  blessedwar.report:        {description: get a report of the Blessed War, default: false}
+  blessedwar.start:         {description: start the Blessed War, default: false}
+  blessedwar.config:        {description: edit the BlessedWar config, default: false}
+  blessedwar.version:       {description: display BlessedWar version, default: false}
+
+# -------------------------------------------- #
+# START NOTATION
+# -------------------------------------------- #
+  blessedwar.*:
+    children:
+      blessedwar.basecommand: true
+      blessedwar.award: true
+      blessedwar.claim: true
+      blessedwar.end: true
+      blessedwar.factionjoin: true
+      blessedwar.factionleave: true
+      blessedwar.modifystat: true
+      blessedwar.playerjoin: true
+      blessedwar.playerleave: true
+      blessedwar.report: true
+      blesssedwar.start: true
+      blessedwar.config: true
+      blessedwar.version: true
+
+
+# -------------------------------------------- #
+# KITS
+# -------------------------------------------- #
+  blessedwar.kit.op:
+    default: op
+    children:
+      blessedwar.*: true
+  blessedwar.kit.rank3:
+    default: false
+    children:
+      blessedwar.kit.rank2: true
+      blessedwar.config: true
+      blessedwar.award: true
+      blessedwar.end: true
+      blessedwar.report: true
+      blessedwar.modifystat: true
+      blessedwar.start: true
+  blessedwar.kit.rank2:
+    default: false
+    children:
+      blessedwar.kit.rank1: true
+  blessedwar.kit.rank1:
+    default: false
+    children:
+      blessedwar.kit.rank0: true
+  blessedwar.kit.rank0:
+    default: false
+    children:
+      blessedwar.basecommmand: true
+      blessedwar.claim: true
+      blessedwar.faction.join: true
+      blessedwar.faction.leave: true
+      blessedwar.player.join: true
+      blessedwar.player.leave: true
+      blessedwar.version: true
+  blessedwar.kit.default:
+    default: true
+    children:
+      blessedwar.kit.rank0: true
