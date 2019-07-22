@@ -2,6 +2,7 @@ package com.massivecraft.blessedwar.entity;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
+
 import java.util.List;
 
 public class aFaction extends Entity<aFaction> {

@@ -13,9 +13,9 @@ public enum Align implements Named
     // -------------------------------------------- //
 
     UNIONISM("Unionism"),
-    DRAGON("Dragon Worship"),
-    ESTEL("Faith of Estel"),
-    VOID("Void Worship")
+    DRAGON("Dragon"),
+    ESTEL("Estel"),
+    VOID("Void")
 
     // END OF LIST
     ;

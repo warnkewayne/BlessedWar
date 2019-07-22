@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.cmd;
 
+import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
@@ -35,7 +36,30 @@ public class CmdBlessedWarFactionJoin extends FactionsCommand {
         if(!aFaction.get(msenderFaction).allowAlignChange()) { msender.msg("<b>You cannot change your alignment so soon!"); return; }
 
         // Args
-        Alignment align = this.readArg();
+        Align align = readArg();
+        Alignment alignment;
+
+        switch(align)
+        {
+            case UNIONISM:
+                alignment = Alignment.get(Alignment.ID_UNIONISM);
+                break;
+
+            case DRAGON:
+                alignment = Alignment.get(Alignment.ID_DRAGON);
+                break;
+
+            case VOID:
+                alignment = Alignment.get(Alignment.ID_VOID);
+                break;
+
+            case ESTEL:
+                alignment = Alignment.get(Alignment.ID_ESTEL);
+                break;
+
+            default:
+                msender.msg("<b> Not valid Alignment name."); return;
+        }
 
         // Check if player has faction
         if(msenderFaction == null)
@@ -52,21 +76,21 @@ public class CmdBlessedWarFactionJoin extends FactionsCommand {
         }
 
         // Check if the faction is already aligned
-        if(align.isFactionAligned(msenderFaction.getId()))
+        if(alignment.isFactionAligned(msenderFaction.getId()))
         {
-            msender.msg("<b>%s is already aligned with %s", msenderFaction.describeTo(msender), align);
+            msender.msg("<b>%s is already aligned with %s", msenderFaction.describeTo(msender), alignment.getName());
             return;
         }
 
         // Add to list
-        align.addFaction(msenderFaction.getId());
+        alignment.addFaction(msenderFaction.getId());
 
         // Give Faction alignment
-        aFaction.get(msenderFaction).setAlignmentId(align.getId());
-        msenderFaction.setName(align.getAlignmentSymbol());
+        aFaction.get(msenderFaction).setAlignmentId(alignment.getId());
+        msenderFaction.setName(alignment.getSymbol());
 
         // Send message
-        msender.msg("<i>%s has successfully aligned with %s", msenderFaction, align);
+        msender.msg("<i>%s has successfully aligned with %s", msenderFaction, alignment.getName());
 
 
     }

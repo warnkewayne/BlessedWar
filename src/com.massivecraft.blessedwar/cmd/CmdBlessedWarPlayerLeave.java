@@ -5,6 +5,7 @@ import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import org.bukkit.Bukkit;
 
 import java.util.List;
 
@@ -42,7 +43,10 @@ public class CmdBlessedWarPlayerLeave extends BlessedWarCommand {
         msender.leaveAlignment();
 
         // Send message
-        msender.msg("<b>You have left the Blessed War and the %s.", align);
+        msender.msg("<b>You have left the Blessed War and %s.", align.getName());
+
+        // Player stops the Religion's quest
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + " " + align.getStartingNode() + ".stop");
 
     }
 

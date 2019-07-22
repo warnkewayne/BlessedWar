@@ -34,6 +34,7 @@ public class Alignment extends Entity<Alignment> {
     {
         this.alignmentName = that.alignmentName;
         this.alignmentSymbol = that.alignmentSymbol;
+        this.startingNode = that.startingNode;
         this.factionList = that.factionList;
         this.playerList = that.playerList;
 
@@ -62,6 +63,11 @@ public class Alignment extends Entity<Alignment> {
 
     // List of factions that are apart of this Alignment
     // Default: Empty {}
+
+    private String startingNode = "";
+
+    // Starting Quest Node for this Alignment
+    // Default: ""
 
     private List<String> factionList = MUtil.list();
 
@@ -142,7 +148,7 @@ public class Alignment extends Entity<Alignment> {
     // FIELD: alignmentName
     // -------------------------------------------- //
 
-    public void setAlignmentName(String aname)
+    public void setName(String aname)
     {
 
         if(MUtil.equals(aname, this.alignmentName)) return;
@@ -151,13 +157,13 @@ public class Alignment extends Entity<Alignment> {
         this.changed();
     }
 
-    public String getAlignmentName() { return this.alignmentName; }
+    public String getName() { return this.alignmentName; }
 
     // -------------------------------------------- //
     // FIELD: alignmentSymbol
     // -------------------------------------------- //
 
-    public void setAlignmentSymbol(String symbol)
+    public void setSymbol(String symbol)
     {
         if(MUtil.equals(symbol, this.alignmentSymbol)) return;
 
@@ -165,8 +171,21 @@ public class Alignment extends Entity<Alignment> {
         this.changed();
     }
 
-    public String getAlignmentSymbol() { return this.alignmentSymbol; }
+    public String getSymbol() { return this.alignmentSymbol; }
 
+    // -------------------------------------------- //
+    // FIELD: startingNode
+    // -------------------------------------------- //
+
+    public void setStartingNode(String startingNode)
+    {
+        if(MUtil.equals(startingNode, this.startingNode)) return;
+
+        this.startingNode = startingNode;
+        this.changed();
+    }
+
+    public String getStartingNode() { return this.startingNode; }
 
     // -------------------------------------------- //
     // FIELD: factionList
@@ -214,6 +233,11 @@ public class Alignment extends Entity<Alignment> {
     // -------------------------------------------- //
     // FIELD: playerList
     // -------------------------------------------- //
+
+    public List<String> getPlayerList()
+    {
+        return this.playerList;
+    }
 
     public void addPlayer(String playerId)
     {

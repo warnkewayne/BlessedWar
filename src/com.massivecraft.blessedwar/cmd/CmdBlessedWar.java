@@ -23,8 +23,9 @@ public class CmdBlessedWar extends MassiveCommand {
     public CmdBlessedWarAward cmdBlessedWarAward = new CmdBlessedWarAward();
     public CmdBlessedWarClaim cmdBlessedWarClaim = new CmdBlessedWarClaim();
     public CmdBlessedWarEnd cmdBlessedWarEnd = new CmdBlessedWarEnd();
-    public CmdBlessedWarFactionJoin cmdBlessedWarFactionJoin = new CmdBlessedWarFactionJoin();
-    public CmdBlessedWarFactionLeave cmdBlessedWarFactionLeave = new CmdBlessedWarFactionLeave();
+    //TODO: active these commands through Factions
+    // public CmdBlessedWarFactionJoin cmdBlessedWarFactionJoin = new CmdBlessedWarFactionJoin();
+    // public CmdBlessedWarFactionLeave cmdBlessedWarFactionLeave = new CmdBlessedWarFactionLeave();
     public CmdBlessedWarModifyStat cmdBlessedWarModifyStat = new CmdBlessedWarModifyStat();
     public CmdBlessedWarPlayerJoin cmdBlessedWarPlayerJoin = new CmdBlessedWarPlayerJoin();
     public CmdBlessedWarPlayerLeave cmdBlessedWarPlayerLeave = new CmdBlessedWarPlayerLeave();

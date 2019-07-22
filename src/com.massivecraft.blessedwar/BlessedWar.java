@@ -2,7 +2,6 @@ package com.massivecraft.blessedwar;
 
 import com.massivecraft.blessedwar.cmd.CmdBlessedWar;
 import com.massivecraft.blessedwar.engine.EngineEntityDeath;
-import com.massivecraft.blessedwar.engine.EngineFactionJoin;
 import com.massivecraft.blessedwar.entity.AlignmentColl;
 import com.massivecraft.blessedwar.entity.MConfColl;
 import com.massivecraft.blessedwar.entity.MPlayerColl;
@@ -37,7 +36,8 @@ public class BlessedWar extends MassivePlugin {
 
                 //Engine
                 EngineEntityDeath.class,
-                EngineFactionJoin.class,
+                //EngineFactionJoin.class,
+
                 //Command
                 CmdBlessedWar.class
 

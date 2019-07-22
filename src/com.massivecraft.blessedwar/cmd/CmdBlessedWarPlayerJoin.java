@@ -9,6 +9,7 @@ import com.massivecraft.massivecore.Button;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.mson.Mson;
+import org.bukkit.Bukkit;
 
 import java.util.List;
 
@@ -37,14 +38,37 @@ public class CmdBlessedWarPlayerJoin extends BlessedWarCommand {
 
         //Args
         Align align = readArg();
-        Alignment alignment = Alignment.get(align.getName());
+        Alignment alignment;
+        String startNode;
+
+        switch(align)
+        {
+            case UNIONISM:
+                alignment = Alignment.get(Alignment.ID_UNIONISM);
+                break;
+
+            case DRAGON:
+                alignment = Alignment.get(Alignment.ID_DRAGON);
+                break;
+
+            case VOID:
+                alignment = Alignment.get(Alignment.ID_VOID);
+                break;
+
+            case ESTEL:
+                alignment = Alignment.get(Alignment.ID_ESTEL);
+                break;
+
+            default:
+                msender.msg("<b> Not valid Alignment name."); return;
+        }
 
         Alignment msenderAlignment = msender.getAlignment();
 
-        // Check if player's faction is aligned
-        if(msenderFaction.getAlignment() != null)
+        // Check if player's alignment is the same
+        if(msenderAlignment == alignment)
         {
-            msender.msg("<b>Your faction is already aligned with %s", msenderFaction.getAlignment());
+            msender.msg("<i>You are already aligned with %s", alignment.getName());
             return;
         }
 
@@ -53,18 +77,27 @@ public class CmdBlessedWarPlayerJoin extends BlessedWarCommand {
         {
 
             Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarPlayerLeave);
-            msender.message(Mson.parse("<b>You are already aligned with %s", msenderAlignment).add(btnLeave.render()));
+            msender.message(Mson.parse("<b>You are already aligned with %s", msenderAlignment.getName()).add(btnLeave.render()));
 
             return;
         }
 
+        // Check if player's faction is aligned
+        if(msenderFaction != null && msenderFaction.getAlignment() != null)
+        {
+            msender.msg("<b>Your faction is already aligned with %s", msenderFaction.getAlignment().getName());
+            return;
+        }
 
         // Add player to list
         msender.setAlignment(alignment);
         alignment.addPlayer(msender.getId());
 
         // Sender message
-        msender.msg("<i>You have successfully aligned with %s", align);
+        msender.msg("<i>You have successfully aligned with %s", alignment.getName());
+
+        // Player gets Religion's starting Quest :D
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + alignment.getStartingNode());
     }
 
 

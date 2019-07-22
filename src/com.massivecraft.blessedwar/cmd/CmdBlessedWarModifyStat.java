@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.cmd;
 
+import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.Modify;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.Stat;
@@ -41,46 +42,69 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
         Enum mod = readArg();
         Enum stat = readArg();
         int change = readArg();
-        Alignment align = readArg();
+        Align a = readArg();
+        Alignment align;
+
+        switch(a)
+        {
+            case UNIONISM:
+                align = Alignment.get(Alignment.ID_UNIONISM);
+                break;
+
+            case DRAGON:
+                align = Alignment.get(Alignment.ID_DRAGON);
+                break;
+
+            case VOID:
+                align = Alignment.get(Alignment.ID_VOID);
+                break;
+
+            case ESTEL:
+                align = Alignment.get(Alignment.ID_ESTEL);
+                break;
+
+            default:
+                return;
+        }
 
 
         if(mod == Modify.ADD)
         {
-            if(stat == Stat.POPULATION) { align.addToAlignPop(change); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.POPULATION) { align.addToAlignPop(change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.PLAYERKILLS) { align.addToAlignPlayerKillCount(change); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.PLAYERKILLS) { align.addToAlignPlayerKillCount(change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.MOBKILLS) { align.addToAlignMobKillCount(change); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.MOBKILLS) { align.addToAlignMobKillCount(change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.REGALS) { align.addToAlignTotalRegals((double) change); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.REGALS) { align.addToAlignTotalRegals((double) change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.TOKENS) { align.addToAlignTokensRedeemed(change); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.TOKENS) { align.addToAlignTokensRedeemed(change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
         }
 
         if(mod == Modify.SUBTRACT)
         {
-            if(stat == Stat.POPULATION) { align.addToAlignPop((change * -1)); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.POPULATION) { align.addToAlignPop((change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.PLAYERKILLS) { align.addToAlignPlayerKillCount((change * -1)); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.PLAYERKILLS) { align.addToAlignPlayerKillCount((change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.MOBKILLS) { align.addToAlignMobKillCount((change * -1)); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.MOBKILLS) { align.addToAlignMobKillCount((change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.REGALS) { align.addToAlignTotalRegals((double) (change * -1)); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.REGALS) { align.addToAlignTotalRegals((double) (change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
-            if(stat == Stat.TOKENS) { align.addToAlignTokensRedeemed((change * -1)); msender.msg("<i>%s has been changed by %s.", stat, change); return; }
+            if(stat == Stat.TOKENS) { align.addToAlignTokensRedeemed((change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
         }
 
         if(mod == Modify.SET)
         {
-            if(stat == Stat.POPULATION) { align.setAlignmentPopulation(change); msender.msg("<i>%s has been set to %s.", stat, change); return; }
+            if(stat == Stat.POPULATION) { align.setAlignmentPopulation(change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
 
-            if(stat == Stat.PLAYERKILLS) { align.setAlignmentPlayerKillCount(change); msender.msg("<i>%s has been set to %s.", stat, change); return; }
+            if(stat == Stat.PLAYERKILLS) { align.setAlignmentPlayerKillCount(change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
 
-            if(stat == Stat.MOBKILLS) { align.setAlignmentMobKillCount(change); msender.msg("<i>%s has been set to %s.", stat, change); return; }
+            if(stat == Stat.MOBKILLS) { align.setAlignmentMobKillCount(change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
 
-            if(stat == Stat.REGALS) { align.setAlignmentTotalRegals((double) change); msender.msg("<i>%s has been set to %s.", stat, change); return; }
+            if(stat == Stat.REGALS) { align.setAlignmentTotalRegals((double) change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
 
-            if(stat == Stat.TOKENS) { align.setAlignmentTokensRedeemed(change); msender.msg("<i>%s has been set to %s.", stat, change); return; }
+            if(stat == Stat.TOKENS) { align.setAlignmentTokensRedeemed(change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
         }
 
     }

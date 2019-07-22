@@ -77,6 +77,8 @@ public class MPlayer extends SenderEntity<MPlayer> {
         //Check if Player's Faction changes
         String idFromFac = com.massivecraft.factions.entity.MPlayer.get(this.getId()).getFaction().getId();
 
+        if(idFromFac == null) return null;
+
         if( ! this.factionId.equals(idFromFac))
         {
             // Change alignment data

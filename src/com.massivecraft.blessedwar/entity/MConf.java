@@ -29,12 +29,23 @@ public class MConf extends Entity<MConf>
     public static boolean blessedWarActive = false;
 
     // -------------------------------------------- //
+    // BLESSEDWAR STARTING QUEST NODES
+    // -------------------------------------------- //
+    public static String startNodeUnionism = "essalonia.blessedwar.unionism";
+    public static String startNodeEstel = "essalonia.blessedwar.estel";
+    public static String startNodeDragon = "essalonia.blessedwar.dragon";
+    public static String startNodeVoid = "essalonia.blessedwar.void";
+
+    // -------------------------------------------- //
     // AWARD ITEMS
     // -------------------------------------------- //
-    // public static ItemStack awardItemUnionism = ;
-    // public static ItemStack awardItemDragon = ;
-    // public static ItemStack awardItemVoid = ;
-    // public static ItemStack awardItemEstel = ;
+    public static String awardCmdBase = "/crate key";
+    public static int awardQuantity = 1; // default to 1
+
+    public static String awardItemUnionism = "unionismkey";
+    public static String awardItemEstel = "estelkey";
+    public static String awardItemDragon = "dragonkey";
+    public static String awardItemVoid = "voidkey";
 
     // -------------------------------------------- //
     // AWARD FACTIONS REGALS
@@ -45,7 +56,7 @@ public class MConf extends Entity<MConf>
     // -------------------------------------------- //
     // ALIGNMENT CHANGE COOLDOWN
     // -------------------------------------------- //
-    public static long alignChangeCooldown = 30; //30 days
+    public static long alignChangeCooldown = 0; //TODO: change to 30 days
 
     // -------------------------------------------- //
     // REWARD CLAIM / ALIGNMENT CHANGE
