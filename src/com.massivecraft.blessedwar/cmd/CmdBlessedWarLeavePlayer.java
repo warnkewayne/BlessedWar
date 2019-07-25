@@ -9,13 +9,13 @@ import org.bukkit.Bukkit;
 
 import java.util.List;
 
-public class CmdBlessedWarPlayerLeave extends BlessedWarCommand {
+public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
 
     // -------------------------------------------- //
     // CONSTRUCT
     // -------------------------------------------- //
 
-    public CmdBlessedWarPlayerLeave()
+    public CmdBlessedWarLeavePlayer()
     {
 
         this.addRequirements(RequirementHasPerm.get(Perm.JOIN_LEAVE));

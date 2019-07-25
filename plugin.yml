@@ -11,14 +11,14 @@ permissions:
 # THE REAL NODES
 # -------------------------------------------- #
   blessedwar.basecommand:   {description: use the Blessed War base command, default: false}
-  blessedwar.award:         {description: award an alignment crate key, default: false}
-  blessedwar.claim:         {description: claim your reward from a successful alignment win, default: false}
+  blessedwar.award:         {description: award a religion, default: false}
+  blessedwar.claim:         {description: claim your reward from the Blessed War, default: false}
   blessedwar.end:           {description: end the Blessed War, default: false}
   #blessedwar.factionjoin:  {description: align your faction with a religion for the Blessed War, default: false}
   #blessedwar.factionleave: {description: leave the alignment your faction is associated with, default: false}
   blessedwar.modifystat:    {description: modify an alignment's stat, default: false}
-  blessedwar.playerjoin:   {description: align yourself with a religion for the Blessed War, default: false}
-  blessedwar.playerleave:  {description: leave the alignment you are associated with, default: false}
+  blessedwar.align:         {description: align yourself with a religion for the Blessed War, default: false}
+  blessedwar.ualign:        {description: leave the alignment you are associated with, default: false}
   blessedwar.report:        {description: get a report of the Blessed War, default: false}
   blessedwar.start:         {description: start the Blessed War, default: false}
   blessedwar.config:        {description: edit the BlessedWar config, default: false}

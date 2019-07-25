@@ -23,12 +23,12 @@ public class CmdBlessedWar extends MassiveCommand {
     public CmdBlessedWarAward cmdBlessedWarAward = new CmdBlessedWarAward();
     public CmdBlessedWarClaim cmdBlessedWarClaim = new CmdBlessedWarClaim();
     public CmdBlessedWarEnd cmdBlessedWarEnd = new CmdBlessedWarEnd();
-    //TODO: active these commands through Factions
-    // public CmdBlessedWarFactionJoin cmdBlessedWarFactionJoin = new CmdBlessedWarFactionJoin();
-    // public CmdBlessedWarFactionLeave cmdBlessedWarFactionLeave = new CmdBlessedWarFactionLeave();
     public CmdBlessedWarModifyStat cmdBlessedWarModifyStat = new CmdBlessedWarModifyStat();
-    public CmdBlessedWarPlayerJoin cmdBlessedWarPlayerJoin = new CmdBlessedWarPlayerJoin();
-    public CmdBlessedWarPlayerLeave cmdBlessedWarPlayerLeave = new CmdBlessedWarPlayerLeave();
+
+    //TODO: Add Factions Join / Leave
+
+    public CmdBlessedWarJoinPlayer cmdBlessedWarJoinPlayer = new CmdBlessedWarJoinPlayer();
+    public CmdBlessedWarLeavePlayer cmdBlessedWarLeavePlayer = new CmdBlessedWarLeavePlayer();
     public CmdBlessedWarReport cmdBlessedWarReport = new CmdBlessedWarReport();
     public CmdBlessedWarStart cmdBlessedWarStart = new CmdBlessedWarStart();
     public CmdBlessedWarConfig cmdBlessedWarConfig = new CmdBlessedWarConfig();
@@ -44,11 +44,9 @@ public class CmdBlessedWar extends MassiveCommand {
         this.addChild(this.cmdBlessedWarAward);
         this.addChild(this.cmdBlessedWarClaim);
         this.addChild(this.cmdBlessedWarEnd);
-        //this.addChild(this.cmdBlessedWarFactionJoin);
-        //this.addChild(this.cmdBlessedWarFactionLeave);
         this.addChild(this.cmdBlessedWarModifyStat);
-        this.addChild(this.cmdBlessedWarPlayerJoin);
-        this.addChild(this.cmdBlessedWarPlayerLeave);
+        this.addChild(this.cmdBlessedWarJoinPlayer);
+        this.addChild(this.cmdBlessedWarLeavePlayer);
         this.addChild(this.cmdBlessedWarReport);
         this.addChild(this.cmdBlessedWarStart);
         this.addChild(this.cmdBlessedWarConfig);

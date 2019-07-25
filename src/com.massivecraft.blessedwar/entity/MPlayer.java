@@ -170,7 +170,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
     // -------------------------------------------- //
     // FIELD: unclaimedReward
     // -------------------------------------------- //
-    //TODO:
 
     public void setUnclaimedReward(boolean unclaimedReward)
     {

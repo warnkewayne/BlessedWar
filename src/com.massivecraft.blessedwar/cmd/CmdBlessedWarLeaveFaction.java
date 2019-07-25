@@ -10,13 +10,13 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 
 import java.util.List;
 
-public class CmdBlessedWarFactionLeave extends FactionsCommand {
+public class CmdBlessedWarLeaveFaction extends FactionsCommand {
 
     // -------------------------------------------- //
     // CONSTRUCT
     // -------------------------------------------- //
 
-    public CmdBlessedWarFactionLeave()
+    public CmdBlessedWarLeaveFaction()
     {
         this.addRequirements(RequirementHasPerm.get(Perm.FAC_JOIN_LEAVE));
     }

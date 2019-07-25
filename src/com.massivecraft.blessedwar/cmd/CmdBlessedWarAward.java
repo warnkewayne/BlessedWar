@@ -43,33 +43,14 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
         // If these players are offline, award them on next login.
 
 
-        //TODO:
+        //TODO: Write for Faction Rewards
 
         //Args
         Align align = this.readArg();
-        Alignment alignment;
+        Alignment alignment = Alignment.getFromAlign(align);
 
-        switch(align)
-        {
-            case UNIONISM:
-                alignment = Alignment.get(Alignment.ID_UNIONISM);
-                break;
+        if(alignment == null) msender.msg("<b>Invalid Alignment.");
 
-            case DRAGON:
-                alignment = Alignment.get(Alignment.ID_DRAGON);
-                break;
-
-            case VOID:
-                alignment = Alignment.get(Alignment.ID_VOID);
-                break;
-
-            case ESTEL:
-                alignment = Alignment.get(Alignment.ID_ESTEL);
-                break;
-
-            default:
-                msender.msg("<b> Not valid Alignment name."); return;
-        }
 
         // Get all players from that alignment
         List<String> members = alignment.getPlayerList();

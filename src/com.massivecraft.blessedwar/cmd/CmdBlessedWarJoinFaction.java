@@ -12,13 +12,13 @@ import com.massivecraft.blessedwar.Perm;
 
 import java.util.List;
 
-public class CmdBlessedWarFactionJoin extends FactionsCommand {
+public class CmdBlessedWarJoinFaction extends FactionsCommand {
 
     // -------------------------------------------- //
     // CONSTRUCT
     // -------------------------------------------- //
 
-    public CmdBlessedWarFactionJoin()
+    public CmdBlessedWarJoinFaction()
     {
         this.addParameter(TypeAlignment.get(), "alignment");
 
@@ -37,29 +37,9 @@ public class CmdBlessedWarFactionJoin extends FactionsCommand {
 
         // Args
         Align align = readArg();
-        Alignment alignment;
+        Alignment alignment = Alignment.getFromAlign(align);
 
-        switch(align)
-        {
-            case UNIONISM:
-                alignment = Alignment.get(Alignment.ID_UNIONISM);
-                break;
 
-            case DRAGON:
-                alignment = Alignment.get(Alignment.ID_DRAGON);
-                break;
-
-            case VOID:
-                alignment = Alignment.get(Alignment.ID_VOID);
-                break;
-
-            case ESTEL:
-                alignment = Alignment.get(Alignment.ID_ESTEL);
-                break;
-
-            default:
-                msender.msg("<b> Not valid Alignment name."); return;
-        }
 
         // Check if player has faction
         if(msenderFaction == null)

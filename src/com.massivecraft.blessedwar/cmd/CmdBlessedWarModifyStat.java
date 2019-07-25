@@ -43,29 +43,9 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
         Enum stat = readArg();
         int change = readArg();
         Align a = readArg();
-        Alignment align;
+        Alignment align = Alignment.getFromAlign(a);
 
-        switch(a)
-        {
-            case UNIONISM:
-                align = Alignment.get(Alignment.ID_UNIONISM);
-                break;
-
-            case DRAGON:
-                align = Alignment.get(Alignment.ID_DRAGON);
-                break;
-
-            case VOID:
-                align = Alignment.get(Alignment.ID_VOID);
-                break;
-
-            case ESTEL:
-                align = Alignment.get(Alignment.ID_ESTEL);
-                break;
-
-            default:
-                return;
-        }
+        if(align == null) return;
 
 
         if(mod == Modify.ADD)

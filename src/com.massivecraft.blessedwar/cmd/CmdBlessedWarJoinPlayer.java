@@ -13,13 +13,13 @@ import org.bukkit.Bukkit;
 
 import java.util.List;
 
-public class CmdBlessedWarPlayerJoin extends BlessedWarCommand {
+public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
 
     // -------------------------------------------- //
     // CONSTRUCT
     // -------------------------------------------- //
 
-    public CmdBlessedWarPlayerJoin()
+    public CmdBlessedWarJoinPlayer()
     {
         this.addParameter(TypeAlignment.get(),"alignment");
 
@@ -38,30 +38,9 @@ public class CmdBlessedWarPlayerJoin extends BlessedWarCommand {
 
         //Args
         Align align = readArg();
-        Alignment alignment;
+        Alignment alignment = Alignment.getFromAlign(align);
+
         String startNode;
-
-        switch(align)
-        {
-            case UNIONISM:
-                alignment = Alignment.get(Alignment.ID_UNIONISM);
-                break;
-
-            case DRAGON:
-                alignment = Alignment.get(Alignment.ID_DRAGON);
-                break;
-
-            case VOID:
-                alignment = Alignment.get(Alignment.ID_VOID);
-                break;
-
-            case ESTEL:
-                alignment = Alignment.get(Alignment.ID_ESTEL);
-                break;
-
-            default:
-                msender.msg("<b> Not valid Alignment name."); return;
-        }
 
         Alignment msenderAlignment = msender.getAlignment();
 
@@ -76,7 +55,7 @@ public class CmdBlessedWarPlayerJoin extends BlessedWarCommand {
         if(msenderAlignment != null)
         {
 
-            Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarPlayerLeave);
+            Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarLeavePlayer);
             msender.message(Mson.parse("<b>You are already aligned with %s", msenderAlignment.getName()).add(btnLeave.render()));
 
             return;

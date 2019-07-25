@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.entity;
 
+import com.massivecraft.blessedwar.Align;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.massivecore.store.Entity;
@@ -71,10 +72,6 @@ public class Alignment extends Entity<Alignment> {
 
     private List<String> factionList = MUtil.list();
 
-    //TODO: might not be necessary
-    // List of INDIVIDUAL players that are apart of this Alignment
-    // Default: Empty {}
-
     private List<String> playerList = MUtil.list();
 
     // The following are Blessed War Stats
@@ -142,6 +139,19 @@ public class Alignment extends Entity<Alignment> {
         //TODO: What do with totalRegals?
 
         this.changed();
+    }
+
+    public static Alignment getFromAlign(Align align)
+    {
+            if( align == Align.UNIONISM ) return Alignment.get(Alignment.ID_UNIONISM);
+
+            if( align == Align.DRAGON ) return Alignment.get(Alignment.ID_DRAGON);
+
+            if( align == Align.VOID ) return Alignment.get(Alignment.ID_VOID);
+
+            if( align == Align.ESTEL ) return Alignment.get(Alignment.ID_ESTEL);
+
+            else return null;
     }
 
     // -------------------------------------------- //
