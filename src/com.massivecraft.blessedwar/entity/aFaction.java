@@ -120,7 +120,7 @@ public class aFaction extends Entity<aFaction> {
         double timeDiff = System.currentTimeMillis() - this.lastAlignChange;
 
         // if they changed alignment within a month do not allow.
-        return !(timeDiff < MConf.alignChangeCooldown);
+        return !(timeDiff < MConf.get().alignChangeCooldown);
     }
 
     // -------------------------------------------- //

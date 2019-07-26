@@ -16,7 +16,7 @@ public class CmdBlessedWarEnd extends BlessedWarCommand
     // CONSTRUCT
     // -------------------------------------------- //
 
-    public CmdBlessedWarEnd() { this.addRequirements(RequirementHasPerm.get(Perm.START_END)); }
+    public CmdBlessedWarEnd() { this.addRequirements(RequirementHasPerm.get(Perm.END)); }
 
     // -------------------------------------------- //
     // OVERRIDE

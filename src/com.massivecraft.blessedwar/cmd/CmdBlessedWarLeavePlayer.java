@@ -18,7 +18,7 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
     public CmdBlessedWarLeavePlayer()
     {
 
-        this.addRequirements(RequirementHasPerm.get(Perm.JOIN_LEAVE));
+        this.addRequirements(RequirementHasPerm.get(Perm.LEAVE));
     }
 
 

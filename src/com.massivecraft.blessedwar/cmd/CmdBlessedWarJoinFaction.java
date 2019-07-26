@@ -22,7 +22,7 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
     {
         this.addParameter(TypeAlignment.get(), "alignment");
 
-        this.addRequirements(RequirementHasPerm.get(Perm.FAC_JOIN_LEAVE));
+        this.addRequirements(RequirementHasPerm.get(Perm.FAC_JOIN));
     }
 
 

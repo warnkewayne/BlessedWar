@@ -23,7 +23,7 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
     {
         this.addParameter(TypeAlignment.get(),"alignment");
 
-        this.addRequirements(RequirementHasPerm.get(Perm.JOIN_LEAVE));
+        this.addRequirements(RequirementHasPerm.get(Perm.JOIN));
     }
 
 

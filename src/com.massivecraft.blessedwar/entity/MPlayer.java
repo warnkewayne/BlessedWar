@@ -207,6 +207,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
         System.out.println(timeDiff);
 
         // if they changed alignment within a week do not allow.
-        return (timeDiff >= MConf.alignChangeCooldown);
+        return (timeDiff >= MConf.get().alignChangeCooldown);
     }
 }

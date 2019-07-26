@@ -25,7 +25,7 @@ public class CmdBlessedWarReport extends BlessedWarCommand
     {
         // If BlessedWar is still going on...
         // Send Progress Report
-        if(MConf.blessedWarActive)
+        if(MConf.get().blessedWarActive)
         {
             msender.msg("<i>[ Blessed War Progress Report ]");
             Alignment.get(Alignment.ID_UNIONISM).printStats(msender);

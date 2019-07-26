@@ -1,11 +1,14 @@
 package com.massivecraft.blessedwar;
 
 import com.massivecraft.blessedwar.cmd.CmdBlessedWar;
+import com.massivecraft.blessedwar.cmd.CmdBlessedWarJoinFaction;
+import com.massivecraft.blessedwar.cmd.CmdBlessedWarLeaveFaction;
 import com.massivecraft.blessedwar.engine.EngineEntityDeath;
 import com.massivecraft.blessedwar.entity.AlignmentColl;
 import com.massivecraft.blessedwar.entity.MConfColl;
 import com.massivecraft.blessedwar.entity.MPlayerColl;
 import com.massivecraft.blessedwar.entity.aFactionColl;
+import com.massivecraft.factions.cmd.CmdFactions;
 import com.massivecraft.massivecore.MassivePlugin;
 
 public class BlessedWar extends MassivePlugin {
@@ -39,7 +42,11 @@ public class BlessedWar extends MassivePlugin {
                 //EngineFactionJoin.class,
 
                 //Command
-                CmdBlessedWar.class
+                CmdBlessedWar.class,
+                CmdFactions.get()
+                        .addChild(CmdBlessedWar.get().cmdBlessedWarJoinFaction)
+                        .addChild(CmdBlessedWar.get().cmdBlessedWarLeaveFaction)
+
 
         );
 

@@ -18,7 +18,7 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
 
     public CmdBlessedWarLeaveFaction()
     {
-        this.addRequirements(RequirementHasPerm.get(Perm.FAC_JOIN_LEAVE));
+        this.addRequirements(RequirementHasPerm.get(Perm.FAC_LEAVE));
     }
 
 

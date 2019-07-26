@@ -29,7 +29,7 @@ public class EngineEntityDeath extends Engine {
     public void onEntityDeath(final EntityDeathEvent event)
     {
         // We aren't gonna count anything if the War isn't active.
-        if(!MConf.blessedWarActive) return;
+        if(!MConf.get().blessedWarActive) return;
 
         // get the player that killed.
         LivingEntity entity = event.getEntity();

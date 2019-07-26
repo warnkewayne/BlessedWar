@@ -4,7 +4,7 @@ version: ${project.version}
 website: ${project.url}
 description: ${project.description}
 authors: [RustyTrumbone]
-depend: [MassiveCore]
+depend: [MassiveCore, Factions]
 
 permissions:
 # -------------------------------------------- #
@@ -14,11 +14,11 @@ permissions:
   blessedwar.award:         {description: award a religion, default: false}
   blessedwar.claim:         {description: claim your reward from the Blessed War, default: false}
   blessedwar.end:           {description: end the Blessed War, default: false}
-  #blessedwar.factionjoin:  {description: align your faction with a religion for the Blessed War, default: false}
-  #blessedwar.factionleave: {description: leave the alignment your faction is associated with, default: false}
-  blessedwar.modifystat:    {description: modify an alignment's stat, default: false}
-  blessedwar.align:         {description: align yourself with a religion for the Blessed War, default: false}
-  blessedwar.ualign:        {description: leave the alignment you are associated with, default: false}
+  blessedwar.fac.join:      {description: align your faction with a religion for the Blessed War, default: false}
+  blessedwar.fac.leave:     {description: leave the alignment your faction is associated with, default: false}
+  blessedwar.modify:        {description: modify an alignment's stat, default: false}
+  blessedwar.join:          {description: align yourself with a religion for the Blessed War, default: false}
+  blessedwar.leave:         {description: leave the alignment you are associated with, default: false}
   blessedwar.report:        {description: get a report of the Blessed War, default: false}
   blessedwar.start:         {description: start the Blessed War, default: false}
   blessedwar.config:        {description: edit the BlessedWar config, default: false}
@@ -33,13 +33,13 @@ permissions:
       blessedwar.award: true
       blessedwar.claim: true
       blessedwar.end: true
-      blessedwar.factionjoin: true
-      blessedwar.factionleave: true
-      blessedwar.modifystat: true
-      blessedwar.playerjoin: true
-      blessedwar.playerleave: true
+      blessedwar.fac.join: true
+      blessedwar.fac.leave: true
+      blessedwar.modify: true
+      blessedwar.join: true
+      blessedwar.leave: true
       blessedwar.report: true
-      blesssedwar.start: true
+      blessedwar.start: true
       blessedwar.config: true
       blessedwar.version: true
 
@@ -59,7 +59,7 @@ permissions:
       blessedwar.award: true
       blessedwar.end: true
       blessedwar.report: true
-      blessedwar.modifystat: true
+      blessedwar.modify: true
       blessedwar.start: true
   blessedwar.kit.rank2:
     default: false
@@ -74,10 +74,10 @@ permissions:
     children:
       blessedwar.basecommmand: true
       blessedwar.claim: true
-      blessedwar.faction.join: true
-      blessedwar.faction.leave: true
-      blessedwar.player.join: true
-      blessedwar.player.leave: true
+      blessedwar.fac.join: true
+      blessedwar.fac.leave: true
+      blessedwar.join: true
+      blessedwar.leave: true
       blessedwar.version: true
   blessedwar.kit.default:
     default: true

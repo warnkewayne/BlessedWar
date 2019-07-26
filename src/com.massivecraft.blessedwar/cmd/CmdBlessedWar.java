@@ -27,6 +27,8 @@ public class CmdBlessedWar extends MassiveCommand {
 
     //TODO: Add Factions Join / Leave
 
+    public CmdBlessedWarJoinFaction cmdBlessedWarJoinFaction = new CmdBlessedWarJoinFaction();
+    public CmdBlessedWarLeaveFaction cmdBlessedWarLeaveFaction = new CmdBlessedWarLeaveFaction();
     public CmdBlessedWarJoinPlayer cmdBlessedWarJoinPlayer = new CmdBlessedWarJoinPlayer();
     public CmdBlessedWarLeavePlayer cmdBlessedWarLeavePlayer = new CmdBlessedWarLeavePlayer();
     public CmdBlessedWarReport cmdBlessedWarReport = new CmdBlessedWarReport();

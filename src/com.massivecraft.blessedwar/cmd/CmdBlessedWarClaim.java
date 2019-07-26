@@ -42,29 +42,29 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
         // Place reward in inventory
         // Remove reward from player's data
 
-        String cmd = MConf.awardCmdBase.replaceFirst("/", "");
+        String cmd = MConf.get().awardCmdBase.replaceFirst("/", "");
         cmd = cmd + " " + msender.getName() + " ";
 
         switch(msender.getAlignment().getId())
         {
             case Alignment.ID_UNIONISM:
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.awardItemUnionism + MConf.awardQuantity);
+                        cmd + MConf.get().awardItemUnionism + MConf.get().awardQuantity);
                 break;
 
             case Alignment.ID_DRAGON:
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.awardItemDragon + MConf.awardQuantity);
+                        cmd + MConf.get().awardItemDragon + MConf.get().awardQuantity);
                 break;
 
             case Alignment.ID_ESTEL:
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.awardItemEstel + MConf.awardQuantity);
+                        cmd + MConf.get().awardItemEstel + MConf.get().awardQuantity);
                 break;
 
             case Alignment.ID_VOID:
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.awardItemVoid + MConf.awardQuantity);
+                        cmd + MConf.get().awardItemVoid + MConf.get().awardQuantity);
                 break;
 
             default:

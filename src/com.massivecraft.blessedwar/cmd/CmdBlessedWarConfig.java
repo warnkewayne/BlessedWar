@@ -7,7 +7,8 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 
 import java.util.List;
 
-public class CmdBlessedWarConfig extends CommandEditSingleton<MConf> {
+public class CmdBlessedWarConfig extends CommandEditSingleton<MConf>
+{
 
     // -------------------------------------------- //
     // CONSTRUCT

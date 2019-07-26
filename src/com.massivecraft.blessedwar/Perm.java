@@ -16,13 +16,19 @@ public enum Perm implements Identified {
 
     VERSION,
 
-    START_END,
+    START,
+
+    END,
 
     AWARD,
 
-    FAC_JOIN_LEAVE,
+    FAC_JOIN,
 
-    JOIN_LEAVE,
+    FAC_LEAVE,
+
+    JOIN,
+
+    LEAVE,
 
     CLAIM,
 
