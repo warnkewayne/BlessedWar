@@ -38,21 +38,21 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
 
         //Args
         Align align = readArg();
-        Alignment alignment = Alignment.getFromAlign(align);
+        String alignmentId = Alignment.getFromAlign(align).getId();
+        String msenderAlignmentId = msender.getAlignmentId();
 
-        String startNode;
-
-        Alignment msenderAlignment = msender.getAlignment();
+        Alignment alignment = Alignment.get(alignmentId);
+        Alignment msenderAlignment = Alignment.get(msenderAlignmentId);
 
         // Check if player's alignment is the same
-        if(msenderAlignment == alignment)
+        if(msenderAlignmentId == alignmentId)
         {
             msender.msg("<i>You are already aligned with %s", alignment.getName());
             return;
         }
 
         // Check if player has an alignment
-        if(msenderAlignment != null)
+        if(msenderAlignmentId != null)
         {
 
             Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarLeavePlayer);
@@ -69,7 +69,7 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         }
 
         // Add player to list
-        msender.setAlignment(alignment);
+        msender.setAlignmentId(alignmentId);
         alignment.addPlayer(msender.getId());
 
         // Sender message

@@ -34,22 +34,29 @@ public class EngineEntityDeath extends Engine {
         // get the player that killed.
         LivingEntity entity = event.getEntity();
         MPlayer mPlayer = MPlayer.get(event.getEntity().getKiller());
-        Alignment align = mPlayer.getAlignment();
+        String alignId = mPlayer.getAlignmentId();
 
-        if(align == null) return;
+        if(alignId == null) return;
+
 
         // Check what type of entity died ;-;
         // is the entity a player?
         if(entity instanceof Player)
         {
-            align.addToAlignPlayerKillCount(1);
+            // Same IP
+            if(mPlayer.getIp().equals(MPlayer.get(entity).getIp())) return;
+
+            // Check alignment if same
+            if(mPlayer.getAlignmentId().equals(MPlayer.get(entity).getAlignmentId())) return;
+
+            Alignment.get(alignId).addToAlignPlayerKillCount(1);
             return;
         }
 
         // is this a hostile mob?
         if(entity instanceof Monster)
         {
-            align.addToAlignMobKillCount(1);
+            Alignment.get(alignId).addToAlignMobKillCount(1);
             return;
         }
 

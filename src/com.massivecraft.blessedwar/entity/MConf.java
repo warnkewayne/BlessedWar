@@ -15,7 +15,7 @@ public class MConf extends Entity<MConf>
     // -------------------------------------------- //
 
     protected static transient MConf i;
-    public static MConf get() { System.out.println(i); return i; }
+    public static MConf get() { return i; }
 
     // -------------------------------------------- //
     // OVERRIDE

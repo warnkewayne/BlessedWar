@@ -6,6 +6,7 @@ import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.MPlayer;
+import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.Button;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -42,8 +43,6 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
         //
         // If these players are offline, award them on next login.
 
-
-        //TODO: Write for Faction Rewards
 
         //Args
         Align align = this.readArg();

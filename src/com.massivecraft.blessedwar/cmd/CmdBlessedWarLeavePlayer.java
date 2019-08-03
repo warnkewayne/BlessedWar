@@ -30,23 +30,30 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
     public void perform() throws MassiveException
     {
         //Check if player has an alignment
-        if(msender.getAlignment() == null)
+        if(msender.getAlignmentId() == null)
         {
             msender.msg("<b>You do not have any alignments");
             return;
         }
 
-        Alignment align = msender.getAlignment();
+        //Check if player's faction has alignment
+        if(msenderFaction != null && msenderFaction.getAlignment() != null)
+        {
+            msender.msg("<b>You cannot abandon yourself from your faction's alignment.");
+            return;
+        }
+
+        String align = msender.getAlignmentId();
 
         // Leave that alignment and clear Player's data
-        align.removePlayer(msender.getId());
+        Alignment.get(align).removePlayer(msender.getId());
         msender.leaveAlignment();
 
         // Send message
-        msender.msg("<b>You have left the Blessed War and %s.", align.getName());
+        msender.msg("<b>You have left the Blessed War and %s.", Alignment.get(align).getName());
 
         // Player stops the Religion's quest
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + " " + align.getStartingNode() + ".stop");
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + " " + Alignment.get(align).getStartingNode() + ".stop");
 
     }
 

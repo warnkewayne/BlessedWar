@@ -201,6 +201,8 @@ public class Alignment extends Entity<Alignment> {
     // FIELD: factionList
     // -------------------------------------------- //
 
+    public List<String> getFactionList() { return this.factionList; }
+
     public void addFaction(String factionId)
     {
         if(factionList.contains(factionId)) return;

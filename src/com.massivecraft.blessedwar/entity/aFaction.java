@@ -1,4 +1,5 @@
 package com.massivecraft.blessedwar.entity;
+import com.massivecraft.blessedwar.Align;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
@@ -22,7 +23,6 @@ public class aFaction extends Entity<aFaction> {
     {
         this.alignmentId = that.alignmentId;
         this.lastAlignChange = that.lastAlignChange;
-        this.playersClaimed = that.playersClaimed;
 
         return this;
     }
@@ -44,7 +44,7 @@ public class aFaction extends Entity<aFaction> {
     // the Faction.
     // Default null
 
-    private Faction faction = null;
+    private String factionId = null;
 
     // This is the alignment the faction has chosen.
     // It is a foreign key.
@@ -59,24 +59,19 @@ public class aFaction extends Entity<aFaction> {
 
     private double lastAlignChange = (double) System.currentTimeMillis();
 
-    //This is a list of players in the faction that
-    // have claimed their reward.
-    // Claim it only once!
-    private List<String> playersClaimed = MUtil.list();
-
 
     // -------------------------------------------- //
     // FIELDS: Faction
     // -------------------------------------------- //
 
-    public void setFaction(Faction faction)
+    public void setFactionId(String factionId)
     {
-        this.faction = faction; this.changed();
+        this.factionId = factionId; this.changed();
     }
 
     public Faction getFaction()
     {
-        if(this.faction != null) return this.faction;
+        if(this.factionId != null) return Faction.get(this.factionId);
 
         return null;
     }
@@ -85,11 +80,11 @@ public class aFaction extends Entity<aFaction> {
     // FIELDS: alignmentId
     // -------------------------------------------- //
 
-    public void setAlignmentId(String id)
+    public void setAlignmentId(String alignmentId)
     {
-        if(this.alignmentId.equals(id)) return;
+        if(this.alignmentId == alignmentId) return;
 
-        this.alignmentId = id;
+        this.alignmentId = alignmentId;
         setLastAlignChange((double) System.currentTimeMillis());
         this.changed();
     }
@@ -123,42 +118,4 @@ public class aFaction extends Entity<aFaction> {
         return !(timeDiff < MConf.get().alignChangeCooldown);
     }
 
-    // -------------------------------------------- //
-    // FIELDS: playersClaimed
-    // -------------------------------------------- //
-
-    public void setPlayersClaimed(List<String> newList)
-    {
-        this.playersClaimed = newList;
-        this.changed();
-    }
-
-    public List<String> getPlayersClaimed() { return this.playersClaimed; }
-
-    public void emptyPlayersClaimed()
-    {
-        this.playersClaimed.clear();
-        this.changed();
-    }
-
-    public void addToPlayersClaimed(String playerId)
-    {
-        if(this.playersClaimed.contains(playerId)) return;
-
-        this.playersClaimed.add(playerId);
-        this.changed();
-    }
-
-    public void removeFromPlayersClaimed(String playerId)
-    {
-        if(!this.playersClaimed.contains(playerId)) return;
-
-        this.playersClaimed.remove(playerId);
-        this.changed();
-    }
-
-    public boolean isInPlayersClaimed(String playerId)
-    {
-        return this.playersClaimed.contains(playerId);
-    }
 }

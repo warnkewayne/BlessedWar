@@ -6,6 +6,7 @@ import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.aFaction;
 import com.massivecraft.factions.cmd.FactionsCommand;
+import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.blessedwar.Perm;
@@ -33,12 +34,10 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
     @Override
     public void perform() throws MassiveException
     {
-        if(!aFaction.get(msenderFaction).allowAlignChange()) { msender.msg("<b>You cannot change your alignment so soon!"); return; }
-
         // Args
         Align align = readArg();
-        Alignment alignment = Alignment.getFromAlign(align);
-
+        String alignmentId = Alignment.getFromAlign(align).getId();
+        Alignment alignment = Alignment.get(alignmentId);
 
 
         // Check if player has faction
@@ -51,14 +50,19 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
         // Check if the player has faction permissions
         if(msender != msenderFaction.getLeader())
         {
-            msender.msg("<b>You must be the Leader of %s to align it.", msenderFaction.describeTo(msender));
+            msender.msg("<b>You must be the Leader of %s <b>to align it.", msenderFaction.describeTo(msender));
             return;
         }
 
+        aFaction afaction = aFaction.get(msenderFaction);
+
+        if(!afaction.allowAlignChange()) { msender.msg("<b>You cannot change your alignment so soon!"); return; }
+
+
         // Check if the faction is already aligned
-        if(alignment.isFactionAligned(msenderFaction.getId()))
+        if(afaction.getAlignment() != null)
         {
-            msender.msg("<b>%s is already aligned with %s", msenderFaction.describeTo(msender), alignment.getName());
+            msender.msg("%s <b>is already aligned with %s", msenderFaction.describeTo(msender), afaction.getAlignment().getName());
             return;
         }
 
@@ -66,12 +70,25 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
         alignment.addFaction(msenderFaction.getId());
 
         // Give Faction alignment
-        aFaction.get(msenderFaction).setAlignmentId(alignment.getId());
-        msenderFaction.setName(alignment.getSymbol());
+        aFaction.get(msenderFaction).setAlignmentId(alignmentId);
+
+            // Get all members of the Faction
+        List <MPlayer> members = msenderFaction.getMPlayers();
+
+        for(MPlayer member : members)
+        {
+            com.massivecraft.blessedwar.entity.MPlayer bwPlayer =
+                    com.massivecraft.blessedwar.entity.MPlayer.get(member.getId());
+
+            bwPlayer.setAlignmentId(alignmentId); // give player religion
+            alignment.addPlayer(bwPlayer.getId()); //add to playerlist
+            bwPlayer.setFactionId(msenderFaction.getId());
+        }
+
+        //TODO: msenderFaction.setName(alignment.getSymbol());
 
         // Send message
-        msender.msg("<i>%s has successfully aligned with %s", msenderFaction, alignment.getName());
-
+        msenderFaction.msg("%s <i>has successfully aligned with %s", msenderFaction.describeTo(msenderFaction), alignment.getName());
 
     }
 

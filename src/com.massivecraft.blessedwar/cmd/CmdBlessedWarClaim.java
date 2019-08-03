@@ -34,18 +34,13 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
         if(msender.getPlayer().getInventory().firstEmpty() == -1)
         { msender.msg("<b>Your inventory is full! Please make a slot to claim your reward."); return; }
 
-        //TODO:
-        // Check Unclaimed PLAYER reward && Check factionPlayerClaimed List
-        //if(!msender.getUnclaimedReward() || msender.getaFaction().getPlayersClaimed().contains(msender))
-        //{ msender.msg("<b>You do not have reward to claim!"); return; }
-
         // Place reward in inventory
         // Remove reward from player's data
 
         String cmd = MConf.get().awardCmdBase.replaceFirst("/", "");
         cmd = cmd + " " + msender.getName() + " ";
 
-        switch(msender.getAlignment().getId())
+        switch(msender.getAlignmentId())
         {
             case Alignment.ID_UNIONISM:
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),

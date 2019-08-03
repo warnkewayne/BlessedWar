@@ -21,8 +21,8 @@ public class MPlayer extends SenderEntity<MPlayer> {
     public MPlayer load(MPlayer that)
     {
         this.lastActivityMillis = that.lastActivityMillis;
-        this.alignment = that.alignment;
-        this.factionId = loadFactionId();
+        this.alignmentId = that.alignmentId;
+        this.factionId = that.factionId;
         this.unclaimedReward = that.unclaimedReward;
         this.lastAlignChange = that.lastAlignChange;
 
@@ -47,7 +47,7 @@ public class MPlayer extends SenderEntity<MPlayer> {
     // The alignment that the player is
     // associated with.
     // Default: null
-    private Alignment alignment = null;
+    private String alignmentId = null;
 
     // If player has a reward to claim.
     // This will tell us.
@@ -67,38 +67,15 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
     public void clearData()
     {
-        this.alignment = null;
+        this.alignmentId = null;
         this.unclaimedReward = false;
         this.changed();
-    }
-
-    public String loadFactionId()
-    {
-        //Check if Player's Faction changes
-        String idFromFac = com.massivecraft.factions.entity.MPlayer.get(this.getId()).getFaction().getId();
-
-        if(idFromFac == null) return null;
-
-        if( ! this.factionId.equals(idFromFac))
-        {
-            // Change alignment data
-            Alignment a = aFaction.get(Faction.get(idFromFac)).getAlignment();
-
-            if(this.alignment != a)
-            {
-                this.alignment = a;
-            }
-
-            return idFromFac;
-        }
-
-        return this.factionId;
     }
 
     public void changedFaction(String fId)
     {
         this.factionId = fId;
-        this.alignment = aFaction.get(Faction.get(fId)).getAlignment();
+        this.alignmentId = aFaction.get(Faction.get(fId)).getAlignmentId();
         this.changed();
     }
 
@@ -124,8 +101,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
     public void setFactionId(String id)
     {
-        if(this.factionId.equals(id)) return;
-
         this.factionId = id;
         this.changed();
     }
@@ -146,19 +121,19 @@ public class MPlayer extends SenderEntity<MPlayer> {
     // FIELD: alignment
     // -------------------------------------------- //
 
-    public void setAlignment(Alignment alignment)
+    public void setAlignmentId(String alignmentId)
     {
 
-        if(alignment == this.alignment) return;
+        if(alignmentId == this.alignmentId) return;
 
-        this.alignment = alignment;
+        this.alignmentId = alignmentId;
         setLastAlignChange(System.currentTimeMillis());
         this.changed();
     }
 
-    public Alignment getAlignment()
+    public String getAlignmentId()
     {
-        return this.alignment;
+        return this.alignmentId;
     }
 
     public void leaveAlignment()

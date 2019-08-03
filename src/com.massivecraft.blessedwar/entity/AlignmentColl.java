@@ -62,7 +62,7 @@ public class AlignmentColl extends Coll<Alignment> {
 
         alignment.setName("Unionism");
         alignment.setSymbol("⚜");
-        alignment.setStartingNode(MConf.get().startNodeUnionism);
+        alignment.setStartingNode((MConf.get().startNodeUnionism));
 
         return alignment;
     }

@@ -5,6 +5,7 @@ import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.aFaction;
 import com.massivecraft.factions.cmd.FactionsCommand;
+import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 
@@ -32,7 +33,7 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
         // Check if player has faction
         if(msenderFaction == null)
         {
-            msender.msg("<b>You be apart of a faction.");
+            msender.msg("<b>You need to be apart of a faction.");
             return;
         }
 
@@ -53,15 +54,23 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
         aFaction afac = aFaction.get(msenderFaction);
         Alignment alignment = afac.getAlignment();
 
+        // Get all members of the Faction
+        List <MPlayer> members = msenderFaction.getMPlayers();
+
+        for(MPlayer member : members)
+        {
+            com.massivecraft.blessedwar.entity.MPlayer bwPlayer =
+                    com.massivecraft.blessedwar.entity.MPlayer.get(member.getId());
+
+            bwPlayer.leaveAlignment(); //Player entity leaves Alignment
+            alignment.removePlayer(bwPlayer.getId()); // Remove player from Alignment's list
+        }
+
         // Leave alignment
         alignment.removeFaction(afac.getId());
         afac.setAlignmentId(null);
-        afac.emptyPlayersClaimed();
 
-        //TODO:
-        // Send message to faction
-
-        msenderFaction.msg("The faction %s left %s", msenderFaction.describeTo(msenderFaction), alignment);
+        msenderFaction.msg("<i>The faction %s <i>left %s", msenderFaction.describeTo(msenderFaction), alignment.getName());
     }
 
 
