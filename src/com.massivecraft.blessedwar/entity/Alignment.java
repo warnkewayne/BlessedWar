@@ -291,6 +291,8 @@ public class Alignment extends Entity<Alignment> {
 
     public void setAlignmentPopulation(int pop)
     {
+        if(alignmentPopulation == pop) return;
+
         this.alignmentPopulation = pop;
         this.changed();
     }
@@ -314,6 +316,8 @@ public class Alignment extends Entity<Alignment> {
 
     public void setAlignmentPlayerKillCount(int killCount)
     {
+        if(alignmentPlayerKillCount == killCount) return;
+
         this.alignmentPlayerKillCount = killCount;
         this.changed();
     }
@@ -335,6 +339,8 @@ public class Alignment extends Entity<Alignment> {
 
     public void setAlignmentMobKillCount(int killCount)
     {
+        if(alignmentMobKillCount == killCount) return;
+
         this.alignmentMobKillCount = killCount;
         this.changed();
     }
@@ -356,6 +362,8 @@ public class Alignment extends Entity<Alignment> {
 
     public void setAlignmentTokensRedeemed(int tokens)
     {
+        if(alignmentTokensRedeemed == tokens) return;
+
         this.alignmentTokensRedeemed = tokens;
         this.changed();
     }
@@ -377,6 +385,8 @@ public class Alignment extends Entity<Alignment> {
 
     public void setAlignmentTotalRegals(double regals)
     {
+        if(alignmentTotalRegals == regals) return;
+
         this.alignmentTotalRegals = regals;
         this.changed();
     }

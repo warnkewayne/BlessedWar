@@ -1,9 +1,12 @@
 package com.massivecraft.blessedwar.entity;
 
 import com.massivecraft.massivecore.command.editor.annotation.EditorName;
+import com.massivecraft.massivecore.command.editor.annotation.EditorType;
 import com.massivecraft.massivecore.command.editor.annotation.EditorVisible;
+import com.massivecraft.massivecore.command.type.TypeMillisDiff;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
+import com.massivecraft.massivecore.util.TimeUnit;
 
 import java.util.List;
 
@@ -57,7 +60,8 @@ public class MConf extends Entity<MConf>
     // -------------------------------------------- //
     // ALIGNMENT CHANGE COOLDOWN
     // -------------------------------------------- //
-    public long alignChangeCooldown = 0; //TODO: change to 30 days
+    @EditorType(TypeMillisDiff.class)
+    public long alignChangeCooldown = 30 * TimeUnit.MILLIS_PER_DAY; //30 days
 
     // -------------------------------------------- //
     // REWARD CLAIM / ALIGNMENT CHANGE
@@ -67,7 +71,8 @@ public class MConf extends Entity<MConf>
     // allow them to claim the award that this faction would
     // get after this amount of time.
 
-    public long rewardClaimCooldown = 15; // 15 days in Millis
+    @EditorType(TypeMillisDiff.class)
+    public long rewardClaimCooldown = 15 * TimeUnit.MILLIS_PER_DAY; // 15 days
 
     // -------------------------------------------- //
     // COMMAND ALIASES

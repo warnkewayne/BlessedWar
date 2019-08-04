@@ -1,7 +1,6 @@
 package com.massivecraft.blessedwar.entity;
 
 import com.massivecraft.massivecore.MassiveCore;
-import com.massivecraft.massivecore.MassiveCoreMConfColl;
 import com.massivecraft.massivecore.store.Coll;
 
 public class MConfColl extends Coll<MConf> {

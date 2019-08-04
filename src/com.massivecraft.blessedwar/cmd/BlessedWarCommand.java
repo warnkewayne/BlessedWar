@@ -1,7 +1,7 @@
 package com.massivecraft.blessedwar.cmd;
 
 import com.massivecraft.blessedwar.entity.MPlayer;
-import com.massivecraft.blessedwar.entity.aFaction;
+import com.massivecraft.blessedwar.entity.AFaction;
 import com.massivecraft.massivecore.command.MassiveCommand;
 
 
@@ -12,7 +12,7 @@ public class BlessedWarCommand extends MassiveCommand {
     // -------------------------------------------- //
 
     public MPlayer msender;
-    public aFaction msenderFaction;
+    public AFaction msenderFaction;
 
     // -------------------------------------------- //
     // CONSTRUCT

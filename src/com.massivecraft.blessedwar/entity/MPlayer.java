@@ -22,7 +22,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
     {
         this.lastActivityMillis = that.lastActivityMillis;
         this.alignmentId = that.alignmentId;
-        this.factionId = that.factionId;
         this.unclaimedReward = that.unclaimedReward;
         this.lastAlignChange = that.lastAlignChange;
 
@@ -37,12 +36,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
     // This is for removing cleanable players.
     // Default is set to the current time.
     private long lastActivityMillis = System.currentTimeMillis();
-
-    // The player's faction id.
-    // If the player is apart of a faction, the id will be stored here.
-    // Foreign Key
-    // Default: null
-    private String factionId = null;
 
     // The alignment that the player is
     // associated with.
@@ -74,9 +67,16 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
     public void changedFaction(String fId)
     {
-        this.factionId = fId;
-        this.alignmentId = aFaction.get(Faction.get(fId)).getAlignmentId();
+        this.alignmentId = AFaction.get(Faction.get(fId)).getAlignmentId();
         this.changed();
+    }
+
+    public AFaction getaFaction()
+    {
+        Faction faction = com.massivecraft.factions.entity.MPlayer.get(id).getFaction();
+
+        if(faction == null) return null;
+        return AFaction.get(faction);
     }
 
     // -------------------------------------------- //
@@ -94,27 +94,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
     @Override
     public boolean shouldBeCleaned(long now) { return this.shouldBeCleaned(now, this.lastActivityMillis);}
-
-    // -------------------------------------------- //
-    // FIELD: factionId
-    // -------------------------------------------- //
-
-    public void setFactionId(String id)
-    {
-        this.factionId = id;
-        this.changed();
-    }
-
-    public String getFactionId()
-    {
-        return factionId;
-    }
-
-    public aFaction getaFaction()
-    {
-        if(factionId == null) { return null; }
-        return aFaction.get(Faction.get(factionId));
-    }
 
 
     // -------------------------------------------- //
@@ -178,10 +157,10 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
         long timeDiff = TimeUnit.MILLISECONDS.toDays(this.lastAlignChange - System.currentTimeMillis());
 
-        System.out.println(this.lastAlignChange);
-        System.out.println(timeDiff);
+        //System.out.println(this.lastAlignChange);
+        //System.out.println(timeDiff);
 
         // if they changed alignment within a week do not allow.
-        return (timeDiff >= MConf.get().alignChangeCooldown);
+        return timeDiff >= MConf.get().alignChangeCooldown;
     }
 }

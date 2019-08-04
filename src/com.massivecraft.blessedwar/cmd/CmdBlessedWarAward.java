@@ -6,7 +6,6 @@ import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.MPlayer;
-import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.Button;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -52,14 +51,23 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
 
 
         // Get all players from that alignment
+
         List<String> members = alignment.getPlayerList();
 
         for (String member : members)
         {
-            MPlayer.get(member).setUnclaimedReward(true);
+            MPlayer mPlayer = MPlayer.get(member);
 
-            Button btnClaim = new Button().setName("Claim").setSender(MPlayer.get(member).getSender()).setCommand(CmdBlessedWar.get().cmdBlessedWarClaim);
-            MPlayer.get(member).message(Mson.parse("<pink>[BLESSED WAR]: <i>Congrats! You have a reward to claim.").add(btnClaim.render()));
+            mPlayer.setUnclaimedReward(true);
+
+            Button btnClaim = new Button()
+                    .setName("Claim")
+                    .setSender(mPlayer.getSender())
+                    .setCommand(CmdBlessedWar.get().cmdBlessedWarClaim);
+
+            mPlayer.message(
+                    Mson.parse("<pink>[BLESSED WAR]: <i>Congrats! You have a reward to claim.")
+                            .add(btnClaim.render()));
         }
 
     }

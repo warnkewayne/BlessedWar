@@ -12,7 +12,7 @@ public class AlignmentColl extends Coll<Alignment> {
     public static AlignmentColl get() { return i; }
     public AlignmentColl()
     {
-        this.setCleanTaskEnabled(true);
+        this.setCleanTaskEnabled(false);
     }
 
     // -------------------------------------------- //

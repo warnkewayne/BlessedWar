@@ -1,7 +1,7 @@
 package com.massivecraft.blessedwar.engine;
 
 import com.massivecraft.blessedwar.entity.MPlayer;
-import com.massivecraft.blessedwar.entity.aFaction;
+import com.massivecraft.blessedwar.entity.AFaction;
 import com.massivecraft.factions.event.EventFactionsMembershipChange;
 import com.massivecraft.massivecore.Engine;
 import org.bukkit.event.EventHandler;
@@ -28,22 +28,13 @@ public class EngineFactionJoin extends Engine {
         // Check if the membershipchange is a join.
         if(event.getReason() == EventFactionsMembershipChange.MembershipChangeReason.JOIN)
         {
-            aFaction afaction = aFaction.get(event.getNewFaction());
+            AFaction afaction = AFaction.get(event.getNewFaction());
 
             // check if the player joining is apart of a religion
             if (aMPlayer.getAlignmentId() != null)
             {
                 aMPlayer.setAlignmentId(afaction.getAlignmentId());
             }
-
-            return;
-        }
-
-        // membership change is a leave
-        if(event.getReason() == EventFactionsMembershipChange.MembershipChangeReason.LEAVE)
-        {
-            // change faction id to null
-            aMPlayer.setFactionId(null);
 
             return;
         }

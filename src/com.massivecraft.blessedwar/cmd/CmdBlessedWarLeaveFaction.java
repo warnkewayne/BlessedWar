@@ -3,7 +3,7 @@ package com.massivecraft.blessedwar.cmd;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.blessedwar.entity.aFaction;
+import com.massivecraft.blessedwar.entity.AFaction;
 import com.massivecraft.factions.cmd.FactionsCommand;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.MassiveException;
@@ -45,13 +45,13 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
         }
 
         // Check if aligned
-        if(aFaction.get(msenderFaction).getAlignmentId() == null)
+        if(AFaction.get(msenderFaction).getAlignmentId() == null)
         {
             msender.msg("<b>%s is not aligned to any religion.", msenderFaction.describeTo(msender));
             return;
         }
 
-        aFaction afac = aFaction.get(msenderFaction);
+        AFaction afac = AFaction.get(msenderFaction);
         Alignment alignment = afac.getAlignment();
 
         // Get all members of the Faction

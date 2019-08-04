@@ -1,8 +1,6 @@
 package com.massivecraft.blessedwar;
 
 import com.massivecraft.blessedwar.cmd.CmdBlessedWar;
-import com.massivecraft.blessedwar.cmd.CmdBlessedWarJoinFaction;
-import com.massivecraft.blessedwar.cmd.CmdBlessedWarLeaveFaction;
 import com.massivecraft.blessedwar.engine.EngineEntityDeath;
 import com.massivecraft.blessedwar.engine.EngineFactionDisband;
 import com.massivecraft.blessedwar.engine.EngineFactionJoin;

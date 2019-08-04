@@ -1,25 +1,21 @@
 package com.massivecraft.blessedwar.entity;
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.Entity;
-import com.massivecraft.massivecore.util.MUtil;
 
-import java.util.List;
-
-public class aFaction extends Entity<aFaction> {
+public class AFaction extends Entity<AFaction> {
 
     // -------------------------------------------- //
     // META
     // -------------------------------------------- //
 
-    public static aFaction get(Faction faction) { return aFactionColl.get().get(faction.getId(), true); }
+    public static AFaction get(Faction faction) { return AFactionColl.get().get(faction.getId(), true); }
 
     //----------------------------------------------//
     // OVERRIDE
     //----------------------------------------------//
 
     @Override
-    public aFaction load(aFaction that)
+    public AFaction load(AFaction that)
     {
         this.alignmentId = that.alignmentId;
         this.lastAlignChange = that.lastAlignChange;
@@ -40,12 +36,6 @@ public class aFaction extends Entity<aFaction> {
     // FIELDS: RAW
     // -------------------------------------------- //
 
-    // This is the field that we will use to "extend"
-    // the Faction.
-    // Default null
-
-    private String factionId = null;
-
     // This is the alignment the faction has chosen.
     // It is a foreign key.
     // Default: null
@@ -58,23 +48,6 @@ public class aFaction extends Entity<aFaction> {
     // Default: currentTime
 
     private double lastAlignChange = (double) System.currentTimeMillis();
-
-
-    // -------------------------------------------- //
-    // FIELDS: Faction
-    // -------------------------------------------- //
-
-    public void setFactionId(String factionId)
-    {
-        this.factionId = factionId; this.changed();
-    }
-
-    public Faction getFaction()
-    {
-        if(this.factionId != null) return Faction.get(this.factionId);
-
-        return null;
-    }
 
     // -------------------------------------------- //
     // FIELDS: alignmentId

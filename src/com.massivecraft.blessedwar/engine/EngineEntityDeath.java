@@ -43,11 +43,13 @@ public class EngineEntityDeath extends Engine {
         // is the entity a player?
         if(entity instanceof Player)
         {
+            MPlayer eMPlayer = MPlayer.get(entity);
+
             // Same IP
-            if(mPlayer.getIp().equals(MPlayer.get(entity).getIp())) return;
+            if(mPlayer.getIp().equals(eMPlayer.getIp())) return;
 
             // Check alignment if same
-            if(mPlayer.getAlignmentId().equals(MPlayer.get(entity).getAlignmentId())) return;
+            if(mPlayer.getAlignmentId().equals(eMPlayer.getAlignmentId())) return;
 
             Alignment.get(alignId).addToAlignPlayerKillCount(1);
             return;
@@ -59,8 +61,6 @@ public class EngineEntityDeath extends Engine {
             Alignment.get(alignId).addToAlignMobKillCount(1);
             return;
         }
-
-        return;
 
     }
 }
