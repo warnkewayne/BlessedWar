@@ -23,7 +23,7 @@ public class CmdBlessedWarEnd extends BlessedWarCommand
     // -------------------------------------------- //
 
     @Override
-    public void perform() throws MassiveException
+    public void perform()
     {
         if(!MConf.get().blessedWarActive) { msender.msg("<i>The Blessed War has already ended."); return; }
 

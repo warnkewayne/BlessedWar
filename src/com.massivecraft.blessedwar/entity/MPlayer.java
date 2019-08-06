@@ -103,7 +103,7 @@ public class MPlayer extends SenderEntity<MPlayer> {
     public void setAlignmentId(String alignmentId)
     {
 
-        if(alignmentId == this.alignmentId) return;
+        if(alignmentId.equals(this.alignmentId)) return;
 
         this.alignmentId = alignmentId;
         setLastAlignChange(System.currentTimeMillis());

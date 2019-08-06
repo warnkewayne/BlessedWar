@@ -41,6 +41,5 @@ public class EngineFactionDisband extends Engine
         // detach afaction from db
         afaction.detach();
 
-        return;
     }
 }

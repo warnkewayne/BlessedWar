@@ -27,10 +27,12 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
     // -------------------------------------------- //
 
     @Override
-    public void perform() throws MassiveException
+    public void perform()
     {
+        String align = msender.getAlignmentId();
+
         //Check if player has an alignment
-        if(msender.getAlignmentId() == null)
+        if(align.equals(null))
         {
             msender.msg("<b>You do not have any alignments");
             return;
@@ -43,17 +45,17 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
             return;
         }
 
-        String align = msender.getAlignmentId();
-
         // Leave that alignment and clear Player's data
-        Alignment.get(align).removePlayer(msender.getId());
+        Alignment alignment = Alignment.get(align);
+
+        alignment.removePlayer(msender.getId());
         msender.leaveAlignment();
 
         // Send message
-        msender.msg("<b>You have left the Blessed War and %s.", Alignment.get(align).getName());
+        msender.msg("<b>You have left the Blessed War and %s.", alignment.getName());
 
         // Player stops the Religion's quest
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + " " + Alignment.get(align).getStartingNode() + ".stop");
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + " " + alignment.getStartingNode() + ".stop");
 
     }
 

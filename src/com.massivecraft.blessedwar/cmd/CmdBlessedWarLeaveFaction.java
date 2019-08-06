@@ -28,7 +28,7 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
     // -------------------------------------------- //
 
     @Override
-    public void perform() throws MassiveException
+    public void perform()
     {
         // Check if player has faction
         if(msenderFaction == null)
@@ -44,14 +44,15 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
             return;
         }
 
+        AFaction afac = AFaction.get(msenderFaction);
+
         // Check if aligned
-        if(AFaction.get(msenderFaction).getAlignmentId() == null)
+        if(afac.getAlignmentId().equals(null))
         {
             msender.msg("<b>%s is not aligned to any religion.", msenderFaction.describeTo(msender));
             return;
         }
 
-        AFaction afac = AFaction.get(msenderFaction);
         Alignment alignment = afac.getAlignment();
 
         // Get all members of the Faction

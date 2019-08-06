@@ -25,7 +25,7 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
     // -------------------------------------------- //
 
     @Override
-    public void perform() throws MassiveException
+    public void perform()
     {
         // Check if Player has reward available to claim
         if(!msender.getUnclaimedReward()) { msender.msg("<b>You do not have a reward to claim."); return; }

@@ -1,8 +1,10 @@
 package com.massivecraft.blessedwar.cmd.type;
 
-import com.massivecraft.blessedwar.Align;
+import com.massivecraft.blessedwar.entity.Alignment;
+import com.massivecraft.blessedwar.entity.AlignmentColl;
+import com.massivecraft.massivecore.command.type.store.TypeEntity;
 
-public class TypeAlignment extends TypeAlign
+public class TypeAlignment extends TypeEntity<Alignment>
 {
 
     // -------------------------------------------- //
@@ -11,10 +13,7 @@ public class TypeAlignment extends TypeAlign
     private static TypeAlignment i = new TypeAlignment();
     public static TypeAlignment get() { return i; }
 
-    public TypeAlignment()
-    {
-        this.setAll(Align.UNIONISM, Align.DRAGON, Align.VOID, Align.ESTEL);
-    }
+    public TypeAlignment() { super(AlignmentColl.get()); }
 
     // -------------------------------------------- //
     // OVERRIDE

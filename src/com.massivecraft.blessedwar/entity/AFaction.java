@@ -55,7 +55,7 @@ public class AFaction extends Entity<AFaction> {
 
     public void setAlignmentId(String alignmentId)
     {
-        if(this.alignmentId == alignmentId) return;
+        if(this.alignmentId.equals(alignmentId)) return;
 
         this.alignmentId = alignmentId;
         setLastAlignChange((double) System.currentTimeMillis());
@@ -74,6 +74,8 @@ public class AFaction extends Entity<AFaction> {
 
     public void setLastAlignChange(double lastAlignChange)
     {
+        if(this.lastAlignChange == lastAlignChange) return;
+
         this.lastAlignChange = lastAlignChange;
         this.changed();
     }

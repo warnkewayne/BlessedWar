@@ -4,6 +4,7 @@ import com.massivecraft.massivecore.command.editor.annotation.EditorName;
 import com.massivecraft.massivecore.command.editor.annotation.EditorType;
 import com.massivecraft.massivecore.command.editor.annotation.EditorVisible;
 import com.massivecraft.massivecore.command.type.TypeMillisDiff;
+import com.massivecraft.massivecore.command.type.TypeStringCommand;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.TimeUnit;
@@ -45,6 +46,7 @@ public class MConf extends Entity<MConf>
 
     public int awardQuantity = 1; // default to 1
 
+    @EditorType(TypeStringCommand.class)
     public String awardCmdBase = "/crate key";
     public String awardItemUnionism = "unionismkey";
     public String awardItemEstel = "estelkey";

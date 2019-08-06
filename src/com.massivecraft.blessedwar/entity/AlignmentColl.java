@@ -43,7 +43,7 @@ public class AlignmentColl extends Coll<Alignment> {
     // ALIGNMENT CREATION
     // -------------------------------------------- //
 
-    public void createAlignments()
+    private void createAlignments()
     {
         getUnionism();
         getFaithOfEstel();
@@ -51,7 +51,7 @@ public class AlignmentColl extends Coll<Alignment> {
         getVoidWorship();
     }
 
-    public Alignment getUnionism()
+    private Alignment getUnionism()
     {
         String id = Alignment.ID_UNIONISM;
         Alignment alignment = this.get(id);
@@ -67,7 +67,7 @@ public class AlignmentColl extends Coll<Alignment> {
         return alignment;
     }
 
-    public Alignment getFaithOfEstel()
+    private Alignment getFaithOfEstel()
     {
         String id = Alignment.ID_ESTEL;
         Alignment alignment = this.get(id);
@@ -83,7 +83,7 @@ public class AlignmentColl extends Coll<Alignment> {
         return alignment;
     }
 
-    public Alignment getDragonWorship()
+    private Alignment getDragonWorship()
     {
         String id = Alignment.ID_DRAGON;
         Alignment alignment = this.get(id);
@@ -99,7 +99,7 @@ public class AlignmentColl extends Coll<Alignment> {
         return alignment;
     }
 
-    public Alignment getVoidWorship()
+    private Alignment getVoidWorship()
     {
         String id = Alignment.ID_VOID;
         Alignment alignment = this.get(id);

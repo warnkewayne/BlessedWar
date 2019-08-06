@@ -1,6 +1,5 @@
 package com.massivecraft.blessedwar.cmd;
 
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
@@ -37,22 +36,24 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         if(!msender.allowAlignChange()) { msender.msg("<b>You cannot change your alignment so soon!"); return; }
 
         //Args
-        Align align = readArg();
-        String alignmentId = Alignment.getFromAlign(align).getId();
+        Alignment alignment = readArg();
+
+        // Alignment Ids
+        String alignmentId = alignment.getId();
         String msenderAlignmentId = msender.getAlignmentId();
 
-        Alignment alignment = Alignment.get(alignmentId);
+        // Msender's alignment
         Alignment msenderAlignment = Alignment.get(msenderAlignmentId);
 
         // Check if player's alignment is the same
-        if(msenderAlignmentId == alignmentId)
+        if(msenderAlignmentId.equals(alignmentId))
         {
             msender.msg("<i>You are already aligned with %s", alignment.getName());
             return;
         }
 
         // Check if player has an alignment
-        if(msenderAlignmentId != null)
+        if(!msenderAlignmentId.equals(null))
         {
 
             Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarLeavePlayer);

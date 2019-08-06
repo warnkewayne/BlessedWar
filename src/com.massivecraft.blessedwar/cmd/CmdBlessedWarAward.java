@@ -1,6 +1,5 @@
 package com.massivecraft.blessedwar.cmd;
 
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
@@ -44,8 +43,7 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
 
 
         //Args
-        Align align = this.readArg();
-        Alignment alignment = Alignment.getFromAlign(align);
+        Alignment alignment = this.readArg();
 
         if(alignment == null) msender.msg("<b>Invalid Alignment.");
 

@@ -1,6 +1,5 @@
 package com.massivecraft.blessedwar.cmd;
 
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
@@ -35,9 +34,8 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
     public void perform() throws MassiveException
     {
         // Args
-        Align align = readArg();
-        String alignmentId = Alignment.getFromAlign(align).getId();
-        Alignment alignment = Alignment.get(alignmentId);
+        Alignment alignment = readArg();
+        String alignmentId = alignment.getId();
 
 
         // Check if player has faction

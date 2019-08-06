@@ -230,7 +230,7 @@ public class Alignment extends Entity<Alignment> {
         return factionList.contains(factionId);
     }
 
-    public void emptyFactionList()
+    private void emptyFactionList()
     {
         //TODO: Please don't do this.
         for(String facId : factionList)
@@ -276,7 +276,7 @@ public class Alignment extends Entity<Alignment> {
         return factionList.contains(playerId);
     }
 
-    public void emptyPlayerList()
+    private void emptyPlayerList()
     {
         alignmentPopulation = alignmentPopulation - playerList.size();
 

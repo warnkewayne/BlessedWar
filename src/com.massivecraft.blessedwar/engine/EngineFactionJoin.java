@@ -31,12 +31,10 @@ public class EngineFactionJoin extends Engine {
             AFaction afaction = AFaction.get(event.getNewFaction());
 
             // check if the player joining is apart of a religion
-            if (aMPlayer.getAlignmentId() != null)
+            if (!aMPlayer.getAlignmentId().equals(null))
             {
                 aMPlayer.setAlignmentId(afaction.getAlignmentId());
             }
-
-            return;
         }
     }
 }

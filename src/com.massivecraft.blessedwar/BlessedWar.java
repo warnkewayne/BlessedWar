@@ -7,7 +7,7 @@ import com.massivecraft.blessedwar.engine.EngineFactionJoin;
 import com.massivecraft.blessedwar.entity.AlignmentColl;
 import com.massivecraft.blessedwar.entity.MConfColl;
 import com.massivecraft.blessedwar.entity.MPlayerColl;
-import com.massivecraft.blessedwar.entity.aFactionColl;
+import com.massivecraft.blessedwar.entity.AFactionColl;
 import com.massivecraft.factions.cmd.CmdFactions;
 import com.massivecraft.massivecore.MassivePlugin;
 
@@ -34,7 +34,7 @@ public class BlessedWar extends MassivePlugin {
                 //Coll
                 MConfColl.class,
                 AlignmentColl.class,
-                aFactionColl.class,
+                AFactionColl.class,
                 MPlayerColl.class,
 
                 //Engine

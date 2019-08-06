@@ -21,7 +21,7 @@ public class CmdBlessedWarReport extends BlessedWarCommand
     // -------------------------------------------- //
 
     @Override
-    public void perform() throws MassiveException
+    public void perform()
     {
         // If BlessedWar is still going on...
         // Send Progress Report

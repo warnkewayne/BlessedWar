@@ -26,7 +26,7 @@ public class CmdBlessedWarStart extends BlessedWarCommand
     // -------------------------------------------- //
 
     @Override
-    public void perform() throws MassiveException
+    public void perform()
     {
 
         if(MConf.get().blessedWarActive) { msender.msg("<i>The Blessed War has already started."); return; }
