@@ -42,8 +42,9 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
         Enum mod = readArg();
         Enum stat = readArg();
         int change = readArg();
-        Align a = readArg();
-        Alignment align = Alignment.getFromAlign(a);
+        Alignment align = readArg();
+        String a = align.getName();
+
 
         if(align == null) return;
 

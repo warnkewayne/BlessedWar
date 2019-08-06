@@ -45,16 +45,15 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         // Msender's alignment
         Alignment msenderAlignment = Alignment.get(msenderAlignmentId);
 
-        // Check if player's alignment is the same
-        if(msenderAlignmentId.equals(alignmentId))
-        {
-            msender.msg("<i>You are already aligned with %s", alignment.getName());
-            return;
-        }
-
         // Check if player has an alignment
         if(msenderAlignmentId != null)
         {
+            // Check if player's alignment is the same
+            if(msenderAlignmentId.equals(alignmentId))
+            {
+                msender.msg("<i>You are already aligned with %s", alignment.getName());
+                return;
+            }
 
             Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarLeavePlayer);
             msender.message(Mson.parse("<b>You are already aligned with %s", msenderAlignment.getName()).add(btnLeave.render()));
