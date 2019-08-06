@@ -6,7 +6,6 @@ import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.AFaction;
 import com.massivecraft.factions.cmd.FactionsCommand;
 import com.massivecraft.factions.entity.MPlayer;
-import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
         AFaction afac = AFaction.get(msenderFaction);
 
         // Check if aligned
-        if(afac.getAlignmentId().equals(null))
+        if(afac.getAlignmentId() == null)
         {
             msender.msg("<b>%s is not aligned to any religion.", msenderFaction.describeTo(msender));
             return;

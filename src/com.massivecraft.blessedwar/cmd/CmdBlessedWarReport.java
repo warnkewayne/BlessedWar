@@ -3,7 +3,6 @@ package com.massivecraft.blessedwar.cmd;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 
 import java.util.List;

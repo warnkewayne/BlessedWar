@@ -36,7 +36,7 @@ public class EngineEntityDeath extends Engine {
         MPlayer mPlayer = MPlayer.get(event.getEntity().getKiller());
         String alignId = mPlayer.getAlignmentId();
 
-        if(alignId.equals(null)) return;
+        if(alignId == null) return;
 
 
         // Check what type of entity died ;-;

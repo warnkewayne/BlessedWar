@@ -82,7 +82,8 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
             alignment.addPlayer(bwPlayer.getId()); //add to playerlist
         }
 
-        //TODO: msenderFaction.setName(alignment.getSymbol());
+        String fName = msenderFaction.getName();
+        msenderFaction.setName(alignment.getSymbol() + fName);
 
         // Send message
         msenderFaction.msg("%s <i>has successfully aligned with %s", msenderFaction.describeTo(msenderFaction), alignment.getName());

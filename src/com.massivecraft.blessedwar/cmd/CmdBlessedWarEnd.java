@@ -3,7 +3,6 @@ package com.massivecraft.blessedwar.cmd;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.event.EventBlessedWarEnd;
-import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.mson.Mson;
@@ -30,7 +29,7 @@ public class CmdBlessedWarEnd extends BlessedWarCommand
         // End the War...
         MConf.get().blessedWarActive = false;
 
-        // BlessedWarStartEvent
+        // BlessedWar End Event
         EventBlessedWarEnd event = new EventBlessedWarEnd(sender);
         event.run();
         if(event.isCancelled()) return;

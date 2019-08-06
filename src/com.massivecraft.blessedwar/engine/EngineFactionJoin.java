@@ -30,11 +30,11 @@ public class EngineFactionJoin extends Engine {
         {
             AFaction afaction = AFaction.get(event.getNewFaction());
 
+            // if faction does not have alignment, we can return.
+            if(afaction.getAlignmentId() != null) return;
+
             // check if the player joining is apart of a religion
-            if (!aMPlayer.getAlignmentId().equals(null))
-            {
                 aMPlayer.setAlignmentId(afaction.getAlignmentId());
-            }
         }
     }
 }

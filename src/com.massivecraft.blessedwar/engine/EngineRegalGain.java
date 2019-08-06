@@ -15,13 +15,6 @@ public class EngineRegalGain extends Engine
     // FACTION JOINED
     // -------------------------------------------- //
 
-    //TODO:
-//    @EventHandler(priority = EventPriority.HIGH)
-//    public void onRegalGain(final )
-//    {
-//      if(Money.enabled())
-//      {
-//
-//      }
-//    }
+    //TODO: @Geek please do this
+
 }

@@ -5,7 +5,6 @@ import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.AlignmentColl;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.event.EventBlessedWarStart;
-import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.mson.Mson;

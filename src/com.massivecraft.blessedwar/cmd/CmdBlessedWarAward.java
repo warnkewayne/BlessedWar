@@ -45,7 +45,11 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
         //Args
         Alignment alignment = this.readArg();
 
-        if(alignment == null) msender.msg("<b>Invalid Alignment.");
+        if(alignment == null)
+        {
+            msender.msg("<b>Invalid Alignment.");
+            return;
+        }
 
 
         // Get all players from that alignment

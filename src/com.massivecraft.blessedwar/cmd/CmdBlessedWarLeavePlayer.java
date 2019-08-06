@@ -3,7 +3,6 @@ package com.massivecraft.blessedwar.cmd;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import org.bukkit.Bukkit;
 
@@ -32,7 +31,7 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
         String align = msender.getAlignmentId();
 
         //Check if player has an alignment
-        if(align.equals(null))
+        if(align == null)
         {
             msender.msg("<b>You do not have any alignments");
             return;
@@ -41,7 +40,7 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
         //Check if player's faction has alignment
         if(msenderFaction != null && msenderFaction.getAlignment() != null)
         {
-            msender.msg("<b>You cannot abandon yourself from your faction's alignment.");
+            msender.msg("<b>You cannot abandon your faction's alignment.");
             return;
         }
 

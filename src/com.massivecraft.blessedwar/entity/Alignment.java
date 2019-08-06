@@ -136,7 +136,7 @@ public class Alignment extends Entity<Alignment> {
         this.alignmentPlayerKillCount = 0;
         this.alignmentMobKillCount = 0;
         this.alignmentTokensRedeemed = 0;
-        //TODO: What do with totalRegals?
+        this.alignmentTotalRegals = 0;
 
         this.changed();
     }
@@ -232,7 +232,6 @@ public class Alignment extends Entity<Alignment> {
 
     private void emptyFactionList()
     {
-        //TODO: Please don't do this.
         for(String facId : factionList)
         {
             alignmentPopulation = alignmentPopulation - FactionColl.get().get(facId).getMPlayers().size();

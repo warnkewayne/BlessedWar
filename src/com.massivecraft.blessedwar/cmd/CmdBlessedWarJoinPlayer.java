@@ -53,7 +53,7 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         }
 
         // Check if player has an alignment
-        if(!msenderAlignmentId.equals(null))
+        if(msenderAlignmentId != null)
         {
 
             Button btnLeave = new Button().setName("Leave").setSender(sender).setCommand(CmdBlessedWar.get().cmdBlessedWarLeavePlayer);
