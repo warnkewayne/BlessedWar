@@ -1,6 +1,5 @@
 package com.massivecraft.blessedwar.cmd;
 
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.Modify;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.Stat;
@@ -26,8 +25,8 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
     {
         this.addParameter(TypeModifier.get(), "modifier");
         this.addParameter(TypeStatstic.get(), "stat");
-        this.addParameter(TypeInteger.get());
         this.addParameter(TypeAlignment.get(), "alignment");
+        this.addParameter(TypeInteger.get());
 
         this.addRequirements(RequirementHasPerm.get(Perm.MODIFY));
     }
@@ -41,13 +40,16 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
     {
         Enum mod = readArg();
         Enum stat = readArg();
-        int change = readArg();
         Alignment align = readArg();
+        int change = readArg();
         String a = align.getName();
 
-
-        if(align == null) return;
-
+        // No negatives >:(
+        if(change < 0)
+        {
+            msender.msg("<b>Number cannot be a negative number");
+            return;
+        }
 
         if(mod == Modify.ADD)
         {

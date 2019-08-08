@@ -8,7 +8,6 @@ import com.massivecraft.massivecore.Button;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.mson.Mson;
-import org.bukkit.Bukkit;
 
 import java.util.List;
 
@@ -69,14 +68,12 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         }
 
         // Add player to list
-        msender.setAlignmentId(alignmentId);
+        msender.changedAlignment(alignmentId);
         alignment.addPlayer(msender.getId());
 
         // Sender message
         msender.msg("<i>You have successfully aligned with %s", alignment.getName());
 
-        // Player gets Religion's starting Quest :D
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + alignment.getStartingNode());
     }
 
 

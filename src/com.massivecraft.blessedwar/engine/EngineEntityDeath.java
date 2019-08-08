@@ -5,6 +5,7 @@ import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.MPlayer;
 import com.massivecraft.massivecore.Engine;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -33,7 +34,12 @@ public class EngineEntityDeath extends Engine {
 
         // get the player that killed.
         LivingEntity entity = event.getEntity();
-        MPlayer mPlayer = MPlayer.get(event.getEntity().getKiller());
+        Entity killer = event.getEntity().getKiller();
+
+        // Killer must be Player
+        if(killer == null) return;
+
+        MPlayer mPlayer = MPlayer.get(killer);
         String alignId = mPlayer.getAlignmentId();
 
         if(alignId == null) return;

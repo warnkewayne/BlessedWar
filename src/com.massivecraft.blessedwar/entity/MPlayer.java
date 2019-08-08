@@ -2,8 +2,7 @@ package com.massivecraft.blessedwar.entity;
 
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.SenderEntity;
-
-import java.util.concurrent.TimeUnit;
+import com.massivecraft.massivecore.util.TimeUnit;
 
 public class MPlayer extends SenderEntity<MPlayer> {
 
@@ -65,18 +64,18 @@ public class MPlayer extends SenderEntity<MPlayer> {
         this.changed();
     }
 
-    public void changedFaction(String fId)
-    {
-        this.alignmentId = AFaction.get(Faction.get(fId)).getAlignmentId();
-        this.changed();
-    }
-
     public AFaction getaFaction()
     {
         Faction faction = com.massivecraft.factions.entity.MPlayer.get(id).getFaction();
 
         if(faction == null) return null;
         return AFaction.get(faction);
+    }
+
+    public void changedAlignment(String alignmentId)
+    {
+        setAlignmentId(alignmentId);
+        setLastAlignChange(System.currentTimeMillis());
     }
 
     // -------------------------------------------- //
@@ -153,14 +152,9 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
     public boolean allowAlignChange()
     {
-        if(this.lastAlignChange == -1) return true;
+        long timeDiff = (System.currentTimeMillis() - this.lastAlignChange) * TimeUnit.MILLIS_PER_DAY;
 
-        long timeDiff = TimeUnit.MILLISECONDS.toDays(this.lastAlignChange - System.currentTimeMillis());
-
-        //System.out.println(this.lastAlignChange);
-        //System.out.println(timeDiff);
-
-        // if they changed alignment within a week do not allow.
+        // if they changed alignment within a month do not allow.
         return timeDiff >= MConf.get().alignChangeCooldown;
     }
 }

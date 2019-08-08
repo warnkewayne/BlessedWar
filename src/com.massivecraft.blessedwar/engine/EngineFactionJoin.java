@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.engine;
 
+import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MPlayer;
 import com.massivecraft.blessedwar.entity.AFaction;
 import com.massivecraft.factions.event.EventFactionsMembershipChange;
@@ -29,12 +30,14 @@ public class EngineFactionJoin extends Engine {
         if(event.getReason() == EventFactionsMembershipChange.MembershipChangeReason.JOIN)
         {
             AFaction afaction = AFaction.get(event.getNewFaction());
+            String afacAlignID = afaction.getAlignmentId();
 
             // if faction does not have alignment, we can return.
-            if(afaction.getAlignmentId() != null) return;
+            if(afacAlignID == null) return;
 
-            // check if the player joining is apart of a religion
-                aMPlayer.setAlignmentId(afaction.getAlignmentId());
+            // set player's alignment to faction's alignment
+            aMPlayer.setAlignmentId(afacAlignID);
+            Alignment.get(afacAlignID).addPlayer(aMPlayer.getId());
         }
     }
 }

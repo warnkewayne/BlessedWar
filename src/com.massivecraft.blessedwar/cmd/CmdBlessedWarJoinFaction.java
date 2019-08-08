@@ -78,7 +78,7 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
             com.massivecraft.blessedwar.entity.MPlayer bwPlayer =
                     com.massivecraft.blessedwar.entity.MPlayer.get(member.getId());
 
-            bwPlayer.setAlignmentId(alignmentId); // give player religion
+            bwPlayer.changedAlignment(alignmentId); // give player religion
             alignment.addPlayer(bwPlayer.getId()); //add to playerlist
         }
 

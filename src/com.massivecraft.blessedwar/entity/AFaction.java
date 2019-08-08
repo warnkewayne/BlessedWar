@@ -1,6 +1,7 @@
 package com.massivecraft.blessedwar.entity;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.Entity;
+import com.massivecraft.massivecore.util.TimeUnit;
 
 public class AFaction extends Entity<AFaction> {
 
@@ -47,7 +48,13 @@ public class AFaction extends Entity<AFaction> {
     // once a week.
     // Default: currentTime
 
-    private double lastAlignChange = (double) System.currentTimeMillis();
+    private long lastAlignChange = System.currentTimeMillis();
+
+    // -------------------------------------------- //
+    // UTIL METHODS
+    // -------------------------------------------- //
+
+    public Faction getFaction() { return Faction.get(id); }
 
     // -------------------------------------------- //
     // FIELDS: alignmentId
@@ -58,7 +65,7 @@ public class AFaction extends Entity<AFaction> {
         if(this.alignmentId.equals(alignmentId)) return;
 
         this.alignmentId = alignmentId;
-        setLastAlignChange((double) System.currentTimeMillis());
+        setLastAlignChange(System.currentTimeMillis());
         this.changed();
     }
 
@@ -72,7 +79,7 @@ public class AFaction extends Entity<AFaction> {
     // FIELDS: alignCooldown
     // -------------------------------------------- //
 
-    public void setLastAlignChange(double lastAlignChange)
+    public void setLastAlignChange(long lastAlignChange)
     {
         if(this.lastAlignChange == lastAlignChange) return;
 
@@ -80,17 +87,17 @@ public class AFaction extends Entity<AFaction> {
         this.changed();
     }
 
-    public double getLastAlignChange()
+    public long getLastAlignChange()
     {
         return this.lastAlignChange;
     }
 
     public boolean allowAlignChange()
     {
-        double timeDiff = System.currentTimeMillis() - this.lastAlignChange;
+        long timeDiff = (System.currentTimeMillis() - this.lastAlignChange) * TimeUnit.MILLIS_PER_DAY;
 
         // if they changed alignment within a month do not allow.
-        return !(timeDiff < MConf.get().alignChangeCooldown);
+        return timeDiff >= MConf.get().alignChangeCooldown;
     }
 
 }

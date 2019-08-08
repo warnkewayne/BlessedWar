@@ -22,11 +22,6 @@ public class MConf extends Entity<MConf>
     public static MConf get() { return i; }
 
     // -------------------------------------------- //
-    // OVERRIDE
-    // -------------------------------------------- //
-
-
-    // -------------------------------------------- //
     // BLESSEDWAR ACTIVE
     // -------------------------------------------- //
     @EditorVisible(false)

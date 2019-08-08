@@ -5,6 +5,7 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
+import org.bukkit.Bukkit;
 
 import java.util.List;
 
@@ -257,6 +258,12 @@ public class Alignment extends Entity<Alignment> {
         alignmentPopulation++;
 
         playerList.add(playerId);
+
+
+        // Player gets Religion's starting Quest :D
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
+                "q p f " + MPlayer.get(playerId).getName() + this.getStartingNode());
+
         this.changed();
     }
 
