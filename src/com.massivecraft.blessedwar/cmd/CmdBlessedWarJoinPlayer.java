@@ -68,7 +68,7 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         }
 
         // Add player to list
-        msender.changedAlignment(alignmentId);
+        msender.setAlignmentId(alignmentId);
         alignment.addPlayer(msender.getId());
 
         // Sender message

@@ -63,6 +63,7 @@ public class AlignmentColl extends Coll<Alignment> {
         alignment.setName("Unionism");
         alignment.setSymbol("⚜");
         alignment.setStartingNode((MConf.get().startNodeUnionism));
+        alignment.setAwardItem("unionismkey");
 
         return alignment;
     }
@@ -79,6 +80,7 @@ public class AlignmentColl extends Coll<Alignment> {
         alignment.setName("Faith of Estel");
         alignment.setSymbol("⚘");
         alignment.setStartingNode(MConf.get().startNodeEstel);
+        alignment.setAwardItem("estelkey");
 
         return alignment;
     }
@@ -95,6 +97,7 @@ public class AlignmentColl extends Coll<Alignment> {
         alignment.setName("Dragon Worship");
         alignment.setSymbol("༗");
         alignment.setStartingNode(MConf.get().startNodeDragon);
+        alignment.setAwardItem("dragonkey");
 
         return alignment;
     }
@@ -111,6 +114,7 @@ public class AlignmentColl extends Coll<Alignment> {
         alignment.setName("Void Worship");
         alignment.setSymbol("∵");
         alignment.setStartingNode(MConf.get().startNodeVoid);
+        alignment.setAwardItem("voidkey");
 
         return alignment;
     }

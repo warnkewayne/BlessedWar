@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.entity;
 
+import com.massivecraft.blessedwar.Align;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.SenderEntity;
 import com.massivecraft.massivecore.util.TimeUnit;
@@ -25,6 +26,16 @@ public class MPlayer extends SenderEntity<MPlayer> {
         this.lastAlignChange = that.lastAlignChange;
 
         return this;
+    }
+
+    @Override
+    public void preClean()
+    {
+        if(alignmentId != null)
+        {
+            Alignment.get(alignmentId).removePlayer(id);
+            this.leaveAlignment();
+        }
     }
 
     // -------------------------------------------- //
@@ -57,7 +68,7 @@ public class MPlayer extends SenderEntity<MPlayer> {
     // CORE UTILITIES
     // -------------------------------------------- //
 
-    public void clearData()
+    private void clearData()
     {
         this.alignmentId = null;
         this.unclaimedReward = false;
@@ -70,12 +81,6 @@ public class MPlayer extends SenderEntity<MPlayer> {
 
         if(faction == null) return null;
         return AFaction.get(faction);
-    }
-
-    public void changedAlignment(String alignmentId)
-    {
-        setAlignmentId(alignmentId);
-        setLastAlignChange(System.currentTimeMillis());
     }
 
     // -------------------------------------------- //

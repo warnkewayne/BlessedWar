@@ -53,9 +53,6 @@ public class CmdBlessedWarLeavePlayer extends BlessedWarCommand {
         // Send message
         msender.msg("<b>You have left the Blessed War and %s.", alignment.getName());
 
-        // Player stops the Religion's quest
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + msender.getName() + " " + alignment.getStartingNode() + ".stop");
-
     }
 
 

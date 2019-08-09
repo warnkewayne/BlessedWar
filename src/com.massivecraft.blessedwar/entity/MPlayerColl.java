@@ -29,4 +29,11 @@ public class MPlayerColl extends SenderColl<MPlayer> {
     // -------------------------------------------- //
     // OVERRIDE: COLL
     // -------------------------------------------- //
+
+    @Override
+    public long getCleanInactivityToleranceMillis()
+    {
+        return MConf.get().cleanInactivityToleranceMillis;
+    }
 }
+

@@ -72,7 +72,7 @@ permissions:
   blessedwar.kit.rank0:
     default: false
     children:
-      blessedwar.basecommmand: true
+      blessedwar.basecommand: true
       blessedwar.claim: true
       blessedwar.fac.join: true
       blessedwar.fac.leave: true

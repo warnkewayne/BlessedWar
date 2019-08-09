@@ -68,6 +68,11 @@ public class Alignment extends Entity<Alignment> {
 
     private String startingNode = "";
 
+    // Award for Alignment
+    // Default: Empty
+
+    private String awardItem = "";
+
     // Starting Quest Node for this Alignment
     // Default: ""
 
@@ -199,6 +204,20 @@ public class Alignment extends Entity<Alignment> {
     public String getStartingNode() { return this.startingNode; }
 
     // -------------------------------------------- //
+    // FIELD: awardItem
+    // -------------------------------------------- //
+
+    public void setAwardItem(String awardItem)
+    {
+        if(MUtil.equals(awardItem, this.awardItem)) return;
+
+        this.awardItem = awardItem;
+        this.changed();
+    }
+
+    public String getAwardItem() { return this.awardItem; }
+
+    // -------------------------------------------- //
     // FIELD: factionList
     // -------------------------------------------- //
 
@@ -262,7 +281,7 @@ public class Alignment extends Entity<Alignment> {
 
         // Player gets Religion's starting Quest :D
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                "q p f " + MPlayer.get(playerId).getName() + this.getStartingNode());
+                "q p f " + MPlayer.get(playerId).getName() + " " + this.getStartingNode());
 
         this.changed();
     }
@@ -274,6 +293,11 @@ public class Alignment extends Entity<Alignment> {
         alignmentPopulation--;
 
         playerList.remove(playerId);
+
+
+        // Player stops the Religion's quest
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + MPlayer.get(playerId).getName() + " " + this.getStartingNode() + ".stop");
+
         this.changed();
     }
 

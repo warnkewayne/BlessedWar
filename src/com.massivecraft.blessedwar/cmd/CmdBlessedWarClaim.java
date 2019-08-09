@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.cmd;
 
+import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -39,31 +40,12 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
         String cmd = MConf.get().awardCmdBase.replaceFirst("/", "");
         cmd = cmd + " " + msender.getName() + " ";
 
-        switch(msender.getAlignmentId())
-        {
-            case Alignment.ID_UNIONISM:
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.get().awardItemUnionism + MConf.get().awardQuantity);
-                break;
+        Alignment alignment = Alignment.get(msender.getAlignmentId());
 
-            case Alignment.ID_DRAGON:
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.get().awardItemDragon + MConf.get().awardQuantity);
-                break;
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
+                cmd + alignment.getAwardItem() + MConf.get().awardQuantity);
 
-            case Alignment.ID_ESTEL:
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.get().awardItemEstel + MConf.get().awardQuantity);
-                break;
 
-            case Alignment.ID_VOID:
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                        cmd + MConf.get().awardItemVoid + MConf.get().awardQuantity);
-                break;
-
-            default:
-                msender.msg("<b>You do not have a reward to claim."); return;
-        }
 
         msender.setUnclaimedReward(false);
     }

@@ -2,6 +2,7 @@ package com.massivecraft.blessedwar.entity;
 
 import com.massivecraft.massivecore.command.editor.annotation.EditorName;
 import com.massivecraft.massivecore.command.editor.annotation.EditorType;
+import com.massivecraft.massivecore.command.editor.annotation.EditorTypeInner;
 import com.massivecraft.massivecore.command.editor.annotation.EditorVisible;
 import com.massivecraft.massivecore.command.type.TypeMillisDiff;
 import com.massivecraft.massivecore.command.type.TypeStringCommand;
@@ -10,6 +11,7 @@ import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.TimeUnit;
 
 import java.util.List;
+import java.util.Map;
 
 @EditorName("config")
 public class MConf extends Entity<MConf>
@@ -43,16 +45,12 @@ public class MConf extends Entity<MConf>
 
     @EditorType(TypeStringCommand.class)
     public String awardCmdBase = "/crate key";
-    public String awardItemUnionism = "unionismkey";
-    public String awardItemEstel = "estelkey";
-    public String awardItemDragon = "dragonkey";
-    public String awardItemVoid = "voidkey";
 
     // -------------------------------------------- //
     // AWARD FACTIONS REGALS
     // -------------------------------------------- //
     public boolean facRegalAward = false; // Defaulted to false.
-    public double facRegalAwardAmount = 0; // Defaulted to 0.
+    public long facRegalAwardAmount = 0; // Defaulted to 0.
 
     // -------------------------------------------- //
     // ALIGNMENT CHANGE COOLDOWN
@@ -70,6 +68,21 @@ public class MConf extends Entity<MConf>
 
     @EditorType(TypeMillisDiff.class)
     public long rewardClaimCooldown = 15 * TimeUnit.MILLIS_PER_DAY; // 15 days
+
+    // -------------------------------------------- //
+    // REMOVE DATA
+    // -------------------------------------------- //
+
+    public boolean removePlayerWhenBanned = true;
+
+    @EditorType(TypeMillisDiff.class)
+    public long cleanInactivityToleranceMillis = 10 * TimeUnit.MILLIS_PER_DAY; //10 Days
+
+    // Player Age Bonus
+    @EditorTypeInner({TypeMillisDiff.class, TypeMillisDiff.class})
+    public Map<Long, Long> cleanInactivityToleranceMillisPlayerAgeToBonus = MUtil.map(
+            2 * TimeUnit.MILLIS_PER_WEEK, 10 * TimeUnit.MILLIS_PER_DAY  // +10 days after 2 weeks
+    );
 
     // -------------------------------------------- //
     // COMMAND ALIASES
