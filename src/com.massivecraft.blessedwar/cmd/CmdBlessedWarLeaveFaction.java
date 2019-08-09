@@ -66,6 +66,11 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
             alignment.removePlayer(bwPlayer.getId()); // Remove player from Alignment's list
         }
 
+        // Change name back
+        String fName = msenderFaction.getName();
+        fName = fName.replace(alignment.getSymbol(), "");
+        msenderFaction.setName(fName);
+
         // Leave alignment
         alignment.removeFaction(afac.getId());
         afac.setAlignmentId(null);

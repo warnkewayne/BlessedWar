@@ -37,7 +37,6 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
         Alignment alignment = readArg();
         String alignmentId = alignment.getId();
 
-
         // Check if player has faction
         if(msenderFaction == null)
         {
@@ -65,10 +64,10 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
         }
 
         // Add to list
-        alignment.addFaction(msenderFaction.getId());
+        alignment.addFaction(afaction.getId());
 
         // Give Faction alignment
-        AFaction.get(msenderFaction).setAlignmentId(alignmentId);
+        afaction.setAlignmentId(alignmentId);
 
             // Get all members of the Faction
         List <MPlayer> members = msenderFaction.getMPlayers();
@@ -82,6 +81,7 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
             alignment.addPlayer(bwPlayer.getId()); //add to playerlist
         }
 
+        // Change name
         String fName = msenderFaction.getName();
         msenderFaction.setName(alignment.getSymbol() + fName);
 

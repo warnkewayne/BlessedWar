@@ -4,7 +4,6 @@ import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
-import org.bukkit.Bukkit;
 
 import java.util.List;
 

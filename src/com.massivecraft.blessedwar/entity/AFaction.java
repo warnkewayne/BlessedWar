@@ -1,6 +1,7 @@
 package com.massivecraft.blessedwar.entity;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.store.Entity;
+import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.TimeUnit;
 
 public class AFaction extends Entity<AFaction> {
@@ -46,9 +47,9 @@ public class AFaction extends Entity<AFaction> {
     // This is the cooldown timer.
     // Alignments are only allowed to switch
     // once a week.
-    // Default: currentTime
+    // Default: -1
 
-    private long lastAlignChange = System.currentTimeMillis();
+    private long lastAlignChange = -1;
 
     // -------------------------------------------- //
     // UTIL METHODS
@@ -62,7 +63,7 @@ public class AFaction extends Entity<AFaction> {
 
     public void setAlignmentId(String alignmentId)
     {
-        if(this.alignmentId.equals(alignmentId)) return;
+        if(MUtil.equals(alignmentId, this.alignmentId)) return;
 
         this.alignmentId = alignmentId;
         setLastAlignChange(System.currentTimeMillis());
@@ -94,7 +95,9 @@ public class AFaction extends Entity<AFaction> {
 
     public boolean allowAlignChange()
     {
-        long timeDiff = (System.currentTimeMillis() - this.lastAlignChange) * TimeUnit.MILLIS_PER_DAY;
+        if(this.lastAlignChange == -1) return true;
+
+        long timeDiff = (System.currentTimeMillis() - this.lastAlignChange) / TimeUnit.MILLIS_PER_DAY;
 
         // if they changed alignment within a month do not allow.
         return timeDiff >= MConf.get().alignChangeCooldown;

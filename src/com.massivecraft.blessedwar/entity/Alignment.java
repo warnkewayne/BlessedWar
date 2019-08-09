@@ -37,6 +37,7 @@ public class Alignment extends Entity<Alignment> {
         this.alignmentName = that.alignmentName;
         this.alignmentSymbol = that.alignmentSymbol;
         this.startingNode = that.startingNode;
+        this.awardItem = that.awardItem;
         this.factionList = that.factionList;
         this.playerList = that.playerList;
 

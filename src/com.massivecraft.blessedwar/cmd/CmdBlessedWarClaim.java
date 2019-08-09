@@ -1,6 +1,5 @@
 package com.massivecraft.blessedwar.cmd;
 
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;

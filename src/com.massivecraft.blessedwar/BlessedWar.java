@@ -39,7 +39,6 @@ public class BlessedWar extends MassivePlugin {
                 EngineEntityDeath.class,
                 EngineFactionJoin.class,
                 EngineFactionDisband.class,
-                EngineCleanInactivity.class,
                 EngineLastActivity.class,
                 EnginePlayerData.class,
 
