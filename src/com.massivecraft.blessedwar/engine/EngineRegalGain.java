@@ -12,7 +12,7 @@ public class EngineRegalGain extends Engine
     public static EngineRegalGain get() { return i; }
 
     // -------------------------------------------- //
-    // FACTION JOINED
+    // REGAL GAIN
     // -------------------------------------------- //
 
     //TODO: @Geek please do this

@@ -2,8 +2,9 @@ package com.massivecraft.blessedwar.cmd;
 
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
+import com.massivecraft.blessedwar.entity.BWPlayer;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.blessedwar.entity.AFaction;
+import com.massivecraft.blessedwar.entity.BWFaction;
 import com.massivecraft.factions.cmd.FactionsCommand;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.MassiveException;
@@ -51,7 +52,7 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
             return;
         }
 
-        AFaction afaction = AFaction.get(msenderFaction);
+        BWFaction afaction = BWFaction.get(msenderFaction);
 
         if(!afaction.allowAlignChange()) { msender.msg("<b>You cannot change your alignment so soon!"); return; }
 
@@ -74,8 +75,8 @@ public class CmdBlessedWarJoinFaction extends FactionsCommand {
 
         for(MPlayer member : members)
         {
-            com.massivecraft.blessedwar.entity.MPlayer bwPlayer =
-                    com.massivecraft.blessedwar.entity.MPlayer.get(member.getId());
+            BWPlayer bwPlayer =
+                    BWPlayer.get(member.getId());
 
             bwPlayer.setAlignmentId(alignmentId); // give player religion
             alignment.addPlayer(bwPlayer.getId()); //add to playerlist

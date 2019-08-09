@@ -5,20 +5,20 @@ import com.massivecraft.massivecore.store.SenderEntity;
 import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.TimeUnit;
 
-public class MPlayer extends SenderEntity<MPlayer> {
+public class BWPlayer extends SenderEntity<BWPlayer> {
 
     // -------------------------------------------- //
     // META
     // -------------------------------------------- //
 
-    public static MPlayer get(Object oid) { return MPlayerColl.get().get(oid); }
+    public static BWPlayer get(Object oid) { return BWPlayerColl.get().get(oid); }
 
     //----------------------------------------------//
     // OVERRIDE
     //----------------------------------------------//
 
     @Override
-    public MPlayer load(MPlayer that)
+    public BWPlayer load(BWPlayer that)
     {
         this.lastActivityMillis = that.lastActivityMillis;
         this.alignmentId = that.alignmentId;
@@ -75,12 +75,12 @@ public class MPlayer extends SenderEntity<MPlayer> {
         this.changed();
     }
 
-    public AFaction getaFaction()
+    public BWFaction getBWFaction()
     {
         Faction faction = com.massivecraft.factions.entity.MPlayer.get(id).getFaction();
 
         if(faction == null) return null;
-        return AFaction.get(faction);
+        return BWFaction.get(faction);
     }
 
     // -------------------------------------------- //

@@ -2,7 +2,7 @@ package com.massivecraft.blessedwar.engine;
 
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.blessedwar.entity.MPlayer;
+import com.massivecraft.blessedwar.entity.BWPlayer;
 import com.massivecraft.massivecore.Engine;
 
 import org.bukkit.entity.Entity;
@@ -39,8 +39,8 @@ public class EngineEntityDeath extends Engine {
         // Killer must be Player
         if(killer == null) return;
 
-        MPlayer mPlayer = MPlayer.get(killer);
-        String alignId = mPlayer.getAlignmentId();
+        BWPlayer bwPlayer = BWPlayer.get(killer);
+        String alignId = bwPlayer.getAlignmentId();
 
         if(alignId == null) return;
 
@@ -49,13 +49,13 @@ public class EngineEntityDeath extends Engine {
         // is the entity a player?
         if(entity instanceof Player)
         {
-            MPlayer eMPlayer = MPlayer.get(entity);
+            BWPlayer eBWPlayer = BWPlayer.get(entity);
 
             // Same IP
-            if(mPlayer.getIp().equals(eMPlayer.getIp())) return;
+            if(bwPlayer.getIp().equals(eBWPlayer.getIp())) return;
 
             // Check alignment if same
-            if(mPlayer.getAlignmentId().equals(eMPlayer.getAlignmentId())) return;
+            if(bwPlayer.getAlignmentId().equals(eBWPlayer.getAlignmentId())) return;
 
             Alignment.get(alignId).addToAlignPlayerKillCount(1);
             return;

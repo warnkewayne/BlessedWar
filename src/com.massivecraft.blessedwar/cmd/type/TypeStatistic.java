@@ -2,15 +2,15 @@ package com.massivecraft.blessedwar.cmd.type;
 
 import com.massivecraft.blessedwar.Stat;
 
-public class TypeStatstic extends TypeStat
+public class TypeStatistic extends TypeStat
 {
     // -------------------------------------------- //
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
-    private static TypeStatstic i = new TypeStatstic();
-    public static TypeStatstic get() { return i; }
+    private static TypeStatistic i = new TypeStatistic();
+    public static TypeStatistic get() { return i; }
 
-    public TypeStatstic()
+    public TypeStatistic()
     {
         this.setAll(Stat.PLAYERKILLS, Stat.MOBKILLS, Stat.POPULATION, Stat.TOKENS, Stat.REGALS);
     }

@@ -4,20 +4,20 @@ import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.TimeUnit;
 
-public class AFaction extends Entity<AFaction> {
+public class BWFaction extends Entity<BWFaction> {
 
     // -------------------------------------------- //
     // META
     // -------------------------------------------- //
 
-    public static AFaction get(Faction faction) { return AFactionColl.get().get(faction.getId(), true); }
+    public static BWFaction get(Faction faction) { return BWFactionColl.get().get(faction.getId(), true); }
 
     //----------------------------------------------//
     // OVERRIDE
     //----------------------------------------------//
 
     @Override
-    public AFaction load(AFaction that)
+    public BWFaction load(BWFaction that)
     {
         this.alignmentId = that.alignmentId;
         this.lastAlignChange = that.lastAlignChange;

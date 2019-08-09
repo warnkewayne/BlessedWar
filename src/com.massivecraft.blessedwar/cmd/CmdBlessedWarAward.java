@@ -4,7 +4,7 @@ import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.blessedwar.entity.MPlayer;
+import com.massivecraft.blessedwar.entity.BWPlayer;
 import com.massivecraft.massivecore.Button;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -58,16 +58,16 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
 
         for (String member : members)
         {
-            MPlayer mPlayer = MPlayer.get(member);
+            BWPlayer bwPlayer = BWPlayer.get(member);
 
-            mPlayer.setUnclaimedReward(true);
+            bwPlayer.setUnclaimedReward(true);
 
             Button btnClaim = new Button()
                     .setName("Claim")
-                    .setSender(mPlayer.getSender())
+                    .setSender(bwPlayer.getSender())
                     .setCommand(CmdBlessedWar.get().cmdBlessedWarClaim);
 
-            mPlayer.message(
+            bwPlayer.message(
                     Mson.parse("<pink>[BLESSED WAR]: <i>Congrats! You have a reward to claim.")
                             .add(btnClaim.render()));
         }

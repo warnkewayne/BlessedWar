@@ -2,8 +2,9 @@ package com.massivecraft.blessedwar.cmd;
 
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.Alignment;
+import com.massivecraft.blessedwar.entity.BWPlayer;
 import com.massivecraft.blessedwar.entity.MConf;
-import com.massivecraft.blessedwar.entity.AFaction;
+import com.massivecraft.blessedwar.entity.BWFaction;
 import com.massivecraft.factions.cmd.FactionsCommand;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -43,7 +44,7 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
             return;
         }
 
-        AFaction afac = AFaction.get(msenderFaction);
+        BWFaction afac = BWFaction.get(msenderFaction);
 
         // Check if aligned
         if(afac.getAlignmentId() == null)
@@ -59,8 +60,8 @@ public class CmdBlessedWarLeaveFaction extends FactionsCommand {
 
         for(MPlayer member : members)
         {
-            com.massivecraft.blessedwar.entity.MPlayer bwPlayer =
-                    com.massivecraft.blessedwar.entity.MPlayer.get(member.getId());
+            BWPlayer bwPlayer =
+                    BWPlayer.get(member.getId());
 
             bwPlayer.leaveAlignment(); //Player entity leaves Alignment
             alignment.removePlayer(bwPlayer.getId()); // Remove player from Alignment's list

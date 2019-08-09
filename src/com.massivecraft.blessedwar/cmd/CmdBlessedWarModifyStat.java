@@ -5,7 +5,7 @@ import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.Stat;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.cmd.type.TypeModifier;
-import com.massivecraft.blessedwar.cmd.type.TypeStatstic;
+import com.massivecraft.blessedwar.cmd.type.TypeStatistic;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.massivecore.MassiveException;
@@ -24,7 +24,7 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
     public CmdBlessedWarModifyStat()
     {
         this.addParameter(TypeModifier.get(), "modifier");
-        this.addParameter(TypeStatstic.get(), "stat");
+        this.addParameter(TypeStatistic.get(), "stat");
         this.addParameter(TypeAlignment.get(), "alignment");
         this.addParameter(TypeInteger.get());
 

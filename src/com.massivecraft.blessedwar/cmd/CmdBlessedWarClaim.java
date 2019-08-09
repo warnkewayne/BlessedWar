@@ -1,10 +1,12 @@
 package com.massivecraft.blessedwar.cmd;
 
+import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.entity.Alignment;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
-import com.massivecraft.blessedwar.Perm;
-import org.bukkit.Bukkit;
+import com.massivecraft.massivecore.mixin.MixinCommand;
+import com.massivecraft.massivecore.util.IdUtil;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 
@@ -26,26 +28,25 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
     @Override
     public void perform()
     {
+        if (msender == null) return;
         // Check if Player has reward available to claim
         if(!msender.getUnclaimedReward()) { msender.msg("<b>You do not have a reward to claim."); return; }
 
-        // Check if Player's inventory is full ?
-        if(msender.getPlayer().getInventory().firstEmpty() == -1)
-        { msender.msg("<b>Your inventory is full! Please make a slot to claim your reward."); return; }
-
-        // Place reward in inventory
+        // Run the reward commands
         // Remove reward from player's data
 
-        String cmd = MConf.get().awardCmdBase.replaceFirst("/", "");
-        cmd = cmd + " " + msender.getName() + " ";
-
         Alignment alignment = Alignment.get(msender.getAlignmentId());
-
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                cmd + alignment.getAwardItem() + MConf.get().awardQuantity);
-
-
-
+    
+        for (String commandLine : alignment.getCmdRewards()) {
+            // Parse
+            if (msender != null)
+            {
+                commandLine = StringUtils.replace(commandLine, "{p}", msender.getName());
+                commandLine = commandLine.replaceAll("\\{/(/*[p])}", "{$1}");
+                MixinCommand.get().dispatchCommand(msender, IdUtil.CONSOLE_ID, commandLine);
+            }
+        }
+        
         msender.setUnclaimedReward(false);
     }
 

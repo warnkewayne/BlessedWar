@@ -34,10 +34,9 @@ public class CmdBlessedWarStart extends BlessedWarCommand
         MConf.get().blessedWarActive = true;
 
         // Clear all alignments' stats
-        AlignmentColl.get().get(Alignment.ID_VOID).resetAlignmentStats();
-        AlignmentColl.get().get(Alignment.ID_DRAGON).resetAlignmentStats();
-        AlignmentColl.get().get(Alignment.ID_ESTEL).resetAlignmentStats();
-        AlignmentColl.get().get(Alignment.ID_UNIONISM).resetAlignmentStats();
+        for (Alignment alignment : AlignmentColl.get().getAll()) {
+            alignment.resetAlignmentStats();
+        }
 
         // BlessedWarStartEvent
         EventBlessedWarStart event = new EventBlessedWarStart(sender);

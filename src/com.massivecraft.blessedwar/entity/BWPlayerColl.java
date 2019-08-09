@@ -3,15 +3,15 @@ package com.massivecraft.blessedwar.entity;
 
 import com.massivecraft.massivecore.store.SenderColl;
 
-public class MPlayerColl extends SenderColl<MPlayer> {
+public class BWPlayerColl extends SenderColl<BWPlayer> {
 
     // -------------------------------------------- //
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static MPlayerColl i = new MPlayerColl();
-    public static MPlayerColl get() { return i; }
-    public MPlayerColl()
+    private static BWPlayerColl i = new BWPlayerColl();
+    public static BWPlayerColl get() { return i; }
+    public BWPlayerColl()
     {
         this.setCleanTaskEnabled(true);
     }

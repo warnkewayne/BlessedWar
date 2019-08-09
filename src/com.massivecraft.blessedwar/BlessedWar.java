@@ -4,8 +4,8 @@ import com.massivecraft.blessedwar.cmd.CmdBlessedWar;
 import com.massivecraft.blessedwar.engine.*;
 import com.massivecraft.blessedwar.entity.AlignmentColl;
 import com.massivecraft.blessedwar.entity.MConfColl;
-import com.massivecraft.blessedwar.entity.MPlayerColl;
-import com.massivecraft.blessedwar.entity.AFactionColl;
+import com.massivecraft.blessedwar.entity.BWPlayerColl;
+import com.massivecraft.blessedwar.entity.BWFactionColl;
 import com.massivecraft.factions.cmd.CmdFactions;
 import com.massivecraft.massivecore.MassivePlugin;
 
@@ -32,15 +32,13 @@ public class BlessedWar extends MassivePlugin {
                 //Coll
                 MConfColl.class,
                 AlignmentColl.class,
-                AFactionColl.class,
-                MPlayerColl.class,
+                BWFactionColl.class,
+                BWPlayerColl.class,
 
                 //Engine
                 EngineEntityDeath.class,
-                EngineFactionJoin.class,
-                EngineFactionDisband.class,
+                EngineFactions.class,
                 EngineLastActivity.class,
-                EnginePlayerData.class,
 
                 //Command
                 CmdBlessedWar.class

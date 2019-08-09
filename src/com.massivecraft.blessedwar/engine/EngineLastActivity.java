@@ -4,7 +4,7 @@ import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivecore.event.EventMassiveCorePlayerLeave;
 import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.blessedwar.BlessedWar;
-import com.massivecraft.blessedwar.entity.MPlayer;
+import com.massivecraft.blessedwar.entity.BWPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -29,7 +29,7 @@ public class EngineLastActivity extends Engine
 		if (sender == null) throw new RuntimeException("sender");
 		if (MUtil.isntSender(sender)) return;
 		
-		MPlayer mplayer = MPlayer.get(sender);
+		BWPlayer mplayer = BWPlayer.get(sender);
 		mplayer.setLastActivityMillis();
 	}
 	

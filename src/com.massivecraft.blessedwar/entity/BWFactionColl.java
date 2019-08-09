@@ -2,15 +2,15 @@ package com.massivecraft.blessedwar.entity;
 
 import com.massivecraft.massivecore.store.Coll;
 
-public class AFactionColl extends Coll<AFaction> {
+public class BWFactionColl extends Coll<BWFaction> {
 
     // -------------------------------------------- //
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static AFactionColl i = new AFactionColl();
-    public static AFactionColl get() { return i; }
-    public AFactionColl()
+    private static BWFactionColl i = new BWFactionColl();
+    public static BWFactionColl get() { return i; }
+    public BWFactionColl()
     {
         this.setCleanTaskEnabled(true);
     }

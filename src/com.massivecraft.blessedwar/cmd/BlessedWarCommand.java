@@ -1,7 +1,7 @@
 package com.massivecraft.blessedwar.cmd;
 
-import com.massivecraft.blessedwar.entity.MPlayer;
-import com.massivecraft.blessedwar.entity.AFaction;
+import com.massivecraft.blessedwar.entity.BWPlayer;
+import com.massivecraft.blessedwar.entity.BWFaction;
 import com.massivecraft.massivecore.command.MassiveCommand;
 
 
@@ -11,8 +11,8 @@ public class BlessedWarCommand extends MassiveCommand {
     // FIELDS
     // -------------------------------------------- //
 
-    public MPlayer msender;
-    public AFaction msenderFaction;
+    public BWPlayer msender;
+    public BWFaction msenderFaction;
 
     // -------------------------------------------- //
     // CONSTRUCT
@@ -27,8 +27,8 @@ public class BlessedWarCommand extends MassiveCommand {
     @Override
     public void senderFields(boolean set)
     {
-        this.msender = set ? MPlayer.get(sender) : null;
-        this.msenderFaction = set ? this.msender.getaFaction() : null;
+        this.msender = set ? BWPlayer.get(sender) : null;
+        this.msenderFaction = set ? this.msender.getBWFaction() : null;
     }
 
 }

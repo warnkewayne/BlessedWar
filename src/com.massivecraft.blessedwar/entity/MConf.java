@@ -5,7 +5,6 @@ import com.massivecraft.massivecore.command.editor.annotation.EditorType;
 import com.massivecraft.massivecore.command.editor.annotation.EditorTypeInner;
 import com.massivecraft.massivecore.command.editor.annotation.EditorVisible;
 import com.massivecraft.massivecore.command.type.TypeMillisDiff;
-import com.massivecraft.massivecore.command.type.TypeStringCommand;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.TimeUnit;
@@ -28,23 +27,6 @@ public class MConf extends Entity<MConf>
     // -------------------------------------------- //
     @EditorVisible(false)
     public boolean blessedWarActive = false;
-
-    // -------------------------------------------- //
-    // BLESSEDWAR STARTING QUEST NODES
-    // -------------------------------------------- //
-    public String startNodeUnionism = "essalonia.blessedwar.unionism";
-    public String startNodeEstel = "essalonia.blessedwar.estel";
-    public String startNodeDragon = "essalonia.blessedwar.dragon";
-    public String startNodeVoid = "essalonia.blessedwar.void";
-
-    // -------------------------------------------- //
-    // AWARD ITEMS
-    // -------------------------------------------- //
-
-    public int awardQuantity = 1; // default to 1
-
-    @EditorType(TypeStringCommand.class)
-    public String awardCmdBase = "/crate key";
 
     // -------------------------------------------- //
     // AWARD FACTIONS REGALS

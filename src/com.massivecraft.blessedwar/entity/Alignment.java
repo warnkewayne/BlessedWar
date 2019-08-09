@@ -1,8 +1,8 @@
 package com.massivecraft.blessedwar.entity;
 
-import com.massivecraft.blessedwar.Align;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
+import com.massivecraft.massivecore.collections.MassiveListDef;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
 import org.bukkit.Bukkit;
@@ -11,16 +11,7 @@ import java.util.List;
 
 
 public class Alignment extends Entity<Alignment> {
-
-    // -------------------------------------------- //
-    // CONSTANTS
-    // -------------------------------------------- //
-
-    public final static transient String ID_UNIONISM = "unionism";
-    public final static transient String ID_ESTEL = "faithofestel";
-    public final static transient String ID_DRAGON = "dragonworship";
-    public final static transient String ID_VOID = "voidworship";
-
+    
     // -------------------------------------------- //
     // META
     // -------------------------------------------- //
@@ -37,7 +28,7 @@ public class Alignment extends Entity<Alignment> {
         this.alignmentName = that.alignmentName;
         this.alignmentSymbol = that.alignmentSymbol;
         this.startingNode = that.startingNode;
-        this.awardItem = that.awardItem;
+        this.cmdRewards = that.cmdRewards;
         this.factionList = that.factionList;
         this.playerList = that.playerList;
 
@@ -72,7 +63,7 @@ public class Alignment extends Entity<Alignment> {
     // Award for Alignment
     // Default: Empty
 
-    private String awardItem = "";
+    private MassiveListDef<String> cmdRewards = new MassiveListDef<>();
 
     // Starting Quest Node for this Alignment
     // Default: ""
@@ -123,7 +114,7 @@ public class Alignment extends Entity<Alignment> {
         emptyPlayerList();
     }
 
-    public void printStats(MPlayer msender)
+    public void printStats(BWPlayer msender)
     {
         msender.msg("------------------------------------");
         msender.msg("<i>%s %s Stats: ", this.alignmentName, this.alignmentSymbol);
@@ -147,20 +138,7 @@ public class Alignment extends Entity<Alignment> {
 
         this.changed();
     }
-
-    public static Alignment getFromAlign(Align align)
-    {
-            if( align == Align.UNIONISM ) return Alignment.get(Alignment.ID_UNIONISM);
-
-            if( align == Align.DRAGON ) return Alignment.get(Alignment.ID_DRAGON);
-
-            if( align == Align.VOID ) return Alignment.get(Alignment.ID_VOID);
-
-            if( align == Align.ESTEL ) return Alignment.get(Alignment.ID_ESTEL);
-
-            else return null;
-    }
-
+    
     // -------------------------------------------- //
     // FIELD: alignmentName
     // -------------------------------------------- //
@@ -205,18 +183,20 @@ public class Alignment extends Entity<Alignment> {
     public String getStartingNode() { return this.startingNode; }
 
     // -------------------------------------------- //
-    // FIELD: awardItem
+    // FIELD: cmdRewards
     // -------------------------------------------- //
 
-    public void setAwardItem(String awardItem)
+    public void setCmdRewards(List<String> cmdAwards)
     {
-        if(MUtil.equals(awardItem, this.awardItem)) return;
-
-        this.awardItem = awardItem;
+        MassiveListDef<String> cleaned = new MassiveListDef<>(cmdAwards);
+        // Detect no-change
+        if (MUtil.equals(this.cmdRewards, cleaned)) return;
+        
+        this.cmdRewards = cleaned;
         this.changed();
     }
 
-    public String getAwardItem() { return this.awardItem; }
+    public List<String> getCmdRewards() { return this.cmdRewards; }
 
     // -------------------------------------------- //
     // FIELD: factionList
@@ -282,7 +262,7 @@ public class Alignment extends Entity<Alignment> {
 
         // Player gets Religion's starting Quest :D
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                "q p f " + MPlayer.get(playerId).getName() + " " + this.getStartingNode());
+                "q p f " + BWPlayer.get(playerId).getName() + " " + this.getStartingNode());
 
         this.changed();
     }
@@ -297,7 +277,7 @@ public class Alignment extends Entity<Alignment> {
 
 
         // Player stops the Religion's quest
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + MPlayer.get(playerId).getName() + " " + this.getStartingNode() + ".stop");
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "q p f " + BWPlayer.get(playerId).getName() + " " + this.getStartingNode() + ".stop");
 
         this.changed();
     }

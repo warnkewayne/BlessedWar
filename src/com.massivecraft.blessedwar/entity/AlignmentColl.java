@@ -1,5 +1,6 @@
 package com.massivecraft.blessedwar.entity;
 
+import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.store.Coll;
 
 public class AlignmentColl extends Coll<Alignment> {
@@ -35,8 +36,12 @@ public class AlignmentColl extends Coll<Alignment> {
         super.setActive(active);
 
         if (!active) return;
-
-        this.createAlignments();
+    
+        if (this.getAll().isEmpty())
+        {
+            this.createAlignments();
+            this.syncAll();
+        }
     }
 
     // -------------------------------------------- //
@@ -53,7 +58,7 @@ public class AlignmentColl extends Coll<Alignment> {
 
     private Alignment getUnionism()
     {
-        String id = Alignment.ID_UNIONISM;
+        String id = "unionism";
         Alignment alignment = this.get(id);
 
         if(alignment != null) return alignment;
@@ -62,15 +67,15 @@ public class AlignmentColl extends Coll<Alignment> {
 
         alignment.setName("Unionism");
         alignment.setSymbol("⚜");
-        alignment.setStartingNode((MConf.get().startNodeUnionism));
-        alignment.setAwardItem("unionismkey");
+        alignment.setStartingNode("essalonia.blessedwar.unionism");
+        alignment.setCmdRewards(new MassiveList<>("/crate key {p} unionismkey 1"));
 
         return alignment;
     }
 
     private Alignment getFaithOfEstel()
     {
-        String id = Alignment.ID_ESTEL;
+        String id = "faithofestel";
         Alignment alignment = this.get(id);
 
         if(alignment != null) return alignment;
@@ -79,15 +84,15 @@ public class AlignmentColl extends Coll<Alignment> {
 
         alignment.setName("Faith of Estel");
         alignment.setSymbol("⚘");
-        alignment.setStartingNode(MConf.get().startNodeEstel);
-        alignment.setAwardItem("estelkey");
+        alignment.setStartingNode("essalonia.blessedwar.estel");
+        alignment.setCmdRewards(new MassiveList<>("/crate key {p} estelkey 1"));
 
         return alignment;
     }
 
     private Alignment getDragonWorship()
     {
-        String id = Alignment.ID_DRAGON;
+        String id = "dragonworship";
         Alignment alignment = this.get(id);
 
         if(alignment != null) return alignment;
@@ -96,15 +101,15 @@ public class AlignmentColl extends Coll<Alignment> {
 
         alignment.setName("Dragon Worship");
         alignment.setSymbol("༗");
-        alignment.setStartingNode(MConf.get().startNodeDragon);
-        alignment.setAwardItem("dragonkey");
+        alignment.setStartingNode("essalonia.blessedwar.dragon");
+        alignment.setCmdRewards(new MassiveList<>("/crate key {p} dragonkey 1"));
 
         return alignment;
     }
 
     private Alignment getVoidWorship()
     {
-        String id = Alignment.ID_VOID;
+        String id = "voidworship";
         Alignment alignment = this.get(id);
 
         if(alignment != null) return alignment;
@@ -113,8 +118,8 @@ public class AlignmentColl extends Coll<Alignment> {
 
         alignment.setName("Void Worship");
         alignment.setSymbol("∵");
-        alignment.setStartingNode(MConf.get().startNodeVoid);
-        alignment.setAwardItem("voidkey");
+        alignment.setStartingNode("essalonia.blessedwar.void");
+        alignment.setCmdRewards(new MassiveList<>("/crate key {p} voidkey 1"));
 
         return alignment;
     }

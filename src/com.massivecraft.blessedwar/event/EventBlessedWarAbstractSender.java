@@ -1,6 +1,6 @@
 package com.massivecraft.blessedwar.event;
 
-import com.massivecraft.blessedwar.entity.MPlayer;
+import com.massivecraft.blessedwar.entity.BWPlayer;
 import com.massivecraft.massivecore.event.EventMassiveCore;
 import org.bukkit.command.CommandSender;
 
@@ -12,7 +12,7 @@ public abstract class EventBlessedWarAbstractSender extends EventMassiveCore
 
     private final CommandSender sender;
     public CommandSender getSender() { return this.sender; }
-    public MPlayer getMPlayer() { return this.sender == null ? null : MPlayer.get(this.sender); }
+    public BWPlayer getMPlayer() { return this.sender == null ? null : BWPlayer.get(this.sender); }
 
     // -------------------------------------------- //
     // CONSTRUCT
