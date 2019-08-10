@@ -3,11 +3,14 @@ package com.massivecraft.blessedwar.cmd;
 import com.massivecraft.blessedwar.Perm;
 import com.massivecraft.blessedwar.cmd.type.TypeAlignment;
 import com.massivecraft.blessedwar.entity.Alignment;
+import com.massivecraft.blessedwar.entity.BWFaction;
 import com.massivecraft.blessedwar.entity.MConf;
 import com.massivecraft.blessedwar.entity.BWPlayer;
+import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.Button;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.money.Money;
 import com.massivecraft.massivecore.mson.Mson;
 
 import java.util.List;
@@ -51,6 +54,23 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
             return;
         }
 
+        // If we want to award winning factions money
+        //  and if Money is enabled
+
+        if(MConf.get().facRegalAward && Money.enabled())
+        {
+            List<String> factions = alignment.getFactionList();
+
+            Long moneyAward = MConf.get().facRegalAwardAmount;
+
+            for (String faction : factions)
+            {
+                Faction fac = Faction.get(faction);
+                BWFaction bwFac = BWFaction.get(fac);
+
+                if(bwFac.allowAward()) Money.spawn(fac, null, moneyAward);
+            }
+        }
 
         // Get all players from that alignment
 
@@ -60,16 +80,19 @@ public class CmdBlessedWarAward extends BlessedWarCommand {
         {
             BWPlayer bwPlayer = BWPlayer.get(member);
 
-            bwPlayer.setUnclaimedReward(true);
+            if(bwPlayer.allowAward())
+            {
+                bwPlayer.setUnclaimedReward(true);
 
-            Button btnClaim = new Button()
-                    .setName("Claim")
-                    .setSender(bwPlayer.getSender())
-                    .setCommand(CmdBlessedWar.get().cmdBlessedWarClaim);
+                Button btnClaim = new Button()
+                        .setName("Claim")
+                        .setSender(bwPlayer.getSender())
+                        .setCommand(CmdBlessedWar.get().cmdBlessedWarClaim);
 
-            bwPlayer.message(
-                    Mson.parse("<pink>[BLESSED WAR]: <i>Congrats! You have a reward to claim.")
-                            .add(btnClaim.render()));
+                bwPlayer.message(
+                        Mson.parse("<pink>[BLESSED WAR]: <i>Congrats! You have a reward to claim.")
+                                .add(btnClaim.render()));
+            }
         }
 
     }

@@ -29,6 +29,7 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
     public void perform()
     {
         if (msender == null) return;
+
         // Check if Player has reward available to claim
         if(!msender.getUnclaimedReward()) { msender.msg("<b>You do not have a reward to claim."); return; }
 
@@ -37,14 +38,12 @@ public class CmdBlessedWarClaim extends BlessedWarCommand {
 
         Alignment alignment = Alignment.get(msender.getAlignmentId());
     
-        for (String commandLine : alignment.getCmdRewards()) {
+        for (String commandLine : alignment.getCmdRewards())
+        {
             // Parse
-            if (msender != null)
-            {
-                commandLine = StringUtils.replace(commandLine, "{p}", msender.getName());
-                commandLine = commandLine.replaceAll("\\{/(/*[p])}", "{$1}");
-                MixinCommand.get().dispatchCommand(msender, IdUtil.CONSOLE_ID, commandLine);
-            }
+            commandLine = StringUtils.replace(commandLine, "{p}", msender.getName());
+            commandLine = commandLine.replaceAll("\\{/(/*[p])}", "{$1}");
+            MixinCommand.get().dispatchCommand(msender, IdUtil.CONSOLE_ID, commandLine);
         }
         
         msender.setUnclaimedReward(false);

@@ -57,6 +57,17 @@ public class BWFaction extends Entity<BWFaction> {
 
     public Faction getFaction() { return Faction.get(id); }
 
+    public boolean allowAward()
+    {
+        if(this.lastAlignChange == -1) return false;
+
+        long timeDiff = (System.currentTimeMillis() - this.lastAlignChange) / TimeUnit.MILLIS_PER_DAY;
+
+        // if they changed alignment within 15 days, do not allow.
+        return timeDiff >= MConf.get().rewardClaimCooldown;
+    }
+
+
     // -------------------------------------------- //
     // FIELDS: alignmentId
     // -------------------------------------------- //

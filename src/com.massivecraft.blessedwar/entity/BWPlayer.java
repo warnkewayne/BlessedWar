@@ -106,7 +106,6 @@ public class BWPlayer extends SenderEntity<BWPlayer> {
 
     public void setAlignmentId(String alignmentId)
     {
-
         if(MUtil.equals(alignmentId, this.alignmentId)) return;
 
         this.alignmentId = alignmentId;
@@ -138,6 +137,16 @@ public class BWPlayer extends SenderEntity<BWPlayer> {
     public boolean getUnclaimedReward()
     {
         return this.unclaimedReward;
+    }
+
+    public boolean allowAward()
+    {
+        if(this.lastAlignChange == -1) return false;
+
+        long timeDiff = (System.currentTimeMillis() - this.lastAlignChange) / TimeUnit.MILLIS_PER_DAY;
+
+        // if they changed alignment within 15 days, do not allow.
+        return timeDiff >= MConf.get().rewardClaimCooldown;
     }
 
     // -------------------------------------------- //

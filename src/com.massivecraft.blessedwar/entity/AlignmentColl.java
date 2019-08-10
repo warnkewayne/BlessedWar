@@ -1,6 +1,6 @@
 package com.massivecraft.blessedwar.entity;
 
-import com.massivecraft.massivecore.collections.MassiveList;
+import com.massivecraft.massivecore.collections.MassiveListDef;
 import com.massivecraft.massivecore.store.Coll;
 
 public class AlignmentColl extends Coll<Alignment> {
@@ -50,78 +50,10 @@ public class AlignmentColl extends Coll<Alignment> {
 
     private void createAlignments()
     {
-        getUnionism();
-        getFaithOfEstel();
-        getDragonWorship();
-        getVoidWorship();
-    }
-
-    private Alignment getUnionism()
-    {
-        String id = "unionism";
-        Alignment alignment = this.get(id);
-
-        if(alignment != null) return alignment;
-
-        alignment = this.create(id);
-
-        alignment.setName("Unionism");
-        alignment.setSymbol("⚜");
-        alignment.setStartingNode("essalonia.blessedwar.unionism");
-        alignment.setCmdRewards(new MassiveList<>("/crate key {p} unionismkey 1"));
-
-        return alignment;
-    }
-
-    private Alignment getFaithOfEstel()
-    {
-        String id = "faithofestel";
-        Alignment alignment = this.get(id);
-
-        if(alignment != null) return alignment;
-
-        alignment = this.create(id);
-
-        alignment.setName("Faith of Estel");
-        alignment.setSymbol("⚘");
-        alignment.setStartingNode("essalonia.blessedwar.estel");
-        alignment.setCmdRewards(new MassiveList<>("/crate key {p} estelkey 1"));
-
-        return alignment;
-    }
-
-    private Alignment getDragonWorship()
-    {
-        String id = "dragonworship";
-        Alignment alignment = this.get(id);
-
-        if(alignment != null) return alignment;
-
-        alignment = this.create(id);
-
-        alignment.setName("Dragon Worship");
-        alignment.setSymbol("༗");
-        alignment.setStartingNode("essalonia.blessedwar.dragon");
-        alignment.setCmdRewards(new MassiveList<>("/crate key {p} dragonkey 1"));
-
-        return alignment;
-    }
-
-    private Alignment getVoidWorship()
-    {
-        String id = "voidworship";
-        Alignment alignment = this.get(id);
-
-        if(alignment != null) return alignment;
-
-        alignment = this.create(id);
-
-        alignment.setName("Void Worship");
-        alignment.setSymbol("∵");
-        alignment.setStartingNode("essalonia.blessedwar.void");
-        alignment.setCmdRewards(new MassiveList<>("/crate key {p} voidkey 1"));
-
-        return alignment;
+        new Alignment("unionism", "Unionism", "⚜", "essalonia.blessedwar.unionism", new MassiveListDef<>("/crate key {p} unionismkey 1"));
+        new Alignment("faithofestel", "Faith of Estel", "⚘", "essalonia.blessedwar.estel", new MassiveListDef<>("/crate key {p} estelkey 1"));
+        new Alignment("dragonworship", "Dragon Worship", "༗", "essalonia.blessedwar.dragon", new MassiveListDef<>("/crate key {p} dragonkey 1"));
+        new Alignment("voidworship", "Void Worship", "∵", "essalonia.blessedwar.void", new MassiveListDef<>("/crate key {p} voidkey 1"));
     }
 
 }
