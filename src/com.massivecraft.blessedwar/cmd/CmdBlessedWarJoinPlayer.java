@@ -72,7 +72,8 @@ public class CmdBlessedWarJoinPlayer extends BlessedWarCommand {
         alignment.addPlayer(msender.getId());
 
         // Sender message
-        msender.msg("<i>You have successfully aligned with %s", alignment.getName());
+        // Quest does this for us
+        //msender.msg("<i>You have successfully aligned with %s", alignment.getName());
 
     }
 
