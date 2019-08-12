@@ -19,7 +19,7 @@
 
     <!-- Info -->
     <name>${project.artifactId}</name>
-    <description>${massiveColorInfo}${project.name} The Blessed War is upon us, prepare and fight for your side.</description>
+    <description>${massiveColorInfo} The Blessed War is upon us, prepare and fight for your side.</description>
     <url>${massiveBaseUrl}/blessedwar</url>
 
     <!-- Dependencies -->

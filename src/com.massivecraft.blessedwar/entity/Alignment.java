@@ -17,9 +17,16 @@ public class Alignment extends Entity<Alignment> {
     // META
     // -------------------------------------------- //
 
+    public Alignment() {}
+
     public Alignment(String id, String name, String symbol, String startNode, MassiveListDef<String> cmdRewards)
     {
-        this.id = id; this.alignmentName = name; this.alignmentSymbol = symbol; this.startingNode = startNode; this.cmdRewards = cmdRewards;
+        this.id = id;
+        this.alignmentName = name;
+        this.alignmentSymbol = symbol;
+        this.startingNode = startNode;
+        this.cmdRewards = cmdRewards;
+
         AlignmentColl.get().attach(this, id);
     }
 

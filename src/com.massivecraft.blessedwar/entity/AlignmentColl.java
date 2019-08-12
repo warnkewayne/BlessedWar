@@ -36,7 +36,7 @@ public class AlignmentColl extends Coll<Alignment> {
         super.setActive(active);
 
         if (!active) return;
-    
+
         if (this.getAll().isEmpty())
         {
             this.createAlignments();
@@ -55,5 +55,4 @@ public class AlignmentColl extends Coll<Alignment> {
         new Alignment("dragonworship", "Dragon Worship", "༗", "essalonia.blessedwar.dragon", new MassiveListDef<>("/crate key {p} dragonkey 1"));
         new Alignment("voidworship", "Void Worship", "∵", "essalonia.blessedwar.void", new MassiveListDef<>("/crate key {p} voidkey 1"));
     }
-
 }
