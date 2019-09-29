@@ -62,6 +62,8 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
             if(stat == Stat.REGALS) { align.addToAlignTotalRegals((double) change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
             if(stat == Stat.TOKENS) { align.addToAlignTokensRedeemed(change); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
+
+            if(stat == Stat.BUILDS) { align.addToAlignmentBuilds(change); msender.msg("<i>s% 's has been changed by %s.", a, stat, change); return; }
         }
 
         if(mod == Modify.SUBTRACT)
@@ -75,6 +77,8 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
             if(stat == Stat.REGALS) { align.addToAlignTotalRegals((double) (change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
 
             if(stat == Stat.TOKENS) { align.addToAlignTokensRedeemed((change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
+
+            if(stat == Stat.BUILDS) { align.addToAlignmentBuilds((change * -1)); msender.msg("<i>%s 's %s has been changed by %s.", a, stat, change); return; }
         }
 
         if(mod == Modify.SET)
@@ -88,6 +92,8 @@ public class CmdBlessedWarModifyStat extends BlessedWarCommand
             if(stat == Stat.REGALS) { align.setAlignmentTotalRegals((double) change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
 
             if(stat == Stat.TOKENS) { align.setAlignmentTokensRedeemed(change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
+
+            if(stat == Stat.BUILDS) { align.setAlignmentBuilds(change); msender.msg("<i>%s 's %s has been set to %s.", a, stat, change); return; }
         }
 
     }

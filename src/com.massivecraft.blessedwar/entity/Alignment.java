@@ -51,6 +51,7 @@ public class Alignment extends Entity<Alignment> {
         this.alignmentMobKillCount = that.alignmentMobKillCount;
         this.alignmentTokensRedeemed = that.alignmentTokensRedeemed;
         this.alignmentTotalRegals = that.alignmentTotalRegals;
+        this.alignmentBuilds = that.alignmentBuilds;
 
         return this;
     }
@@ -118,6 +119,13 @@ public class Alignment extends Entity<Alignment> {
 
     private double alignmentTotalRegals = 0;
 
+    // This is a field to keep tallies
+    // on build points awarded manually by
+    // staff
+    // default 0
+
+    private int alignmentBuilds = 0;
+
     // -------------------------------------------- //
     // CORE UTILITIES
     // -------------------------------------------- //
@@ -149,6 +157,7 @@ public class Alignment extends Entity<Alignment> {
         this.alignmentMobKillCount = 0;
         this.alignmentTokensRedeemed = 0;
         this.alignmentTotalRegals = 0;
+        this.alignmentBuilds = 0;
 
         this.changed();
     }
@@ -423,4 +432,75 @@ public class Alignment extends Entity<Alignment> {
         this.changed();
     }
 
+    public void regalCountHelper(String senderId, String recipientId, Integer amount)
+    {
+        BWPlayer recipient = BWPlayer.get(recipientId);
+        BWPlayer sender = BWPlayer.get(senderId);
+
+        // if senderId is null, money appears
+        if(senderId == null)
+        {
+            // this catches account transactions and doesnt
+            // count them.
+            if(recipient == null) return;
+
+            Alignment recipientAlignment = Alignment.get(recipient.getAlignmentId());
+
+            if(recipientAlignment == null) return;
+
+            // money is getting added
+            recipientAlignment.addToAlignTotalRegals(amount);
+            return;
+        }
+
+        // if recipientId is null, money disappears
+        if(recipientId == null)
+        {
+            // this catches account transactions and doesnt
+            // count them.
+            if(sender == null) return;
+
+            Alignment senderAlignment = Alignment.get(sender.getAlignmentId());
+
+            if(senderAlignment == null) return;
+
+            // money is getting removed, negate the amount
+            senderAlignment.addToAlignTotalRegals((-1 * amount));
+            return;
+        }
+
+        // if neither are null, money is being transferred.
+
+        // this catches account transactions and doesn't count them
+        if(recipient == null || sender == null) return;
+
+        Alignment recipientAlignment = Alignment.get(recipient.getAlignmentId());
+        Alignment senderAlignment = Alignment.get(sender.getAlignmentId());
+
+        // if same alignment, return
+        if(recipientAlignment == senderAlignment) return;
+
+        recipientAlignment.addToAlignTotalRegals(amount);
+        senderAlignment.addToAlignTotalRegals((-1 * amount));
+    }
+
+    // -------------------------------------------- //
+    // FIELD: alignmentTotalRegals
+    // -------------------------------------------- //
+
+    public void setAlignmentBuilds(int builds)
+    {
+        if(alignmentBuilds == builds) return;
+
+        this.alignmentBuilds = builds;
+        this.changed();
+    }
+
+    public int getAlignmentBuilds() { return this.alignmentBuilds; }
+
+    public void addToAlignmentBuilds(int builds)
+    {
+        this.alignmentBuilds = this.alignmentBuilds + builds;
+        this.changed();
+    }
 }

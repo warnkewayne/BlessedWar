@@ -16,5 +16,7 @@ public enum Stat
 
     REGALS,
 
+    BUILDS,
+
     ;
 }
